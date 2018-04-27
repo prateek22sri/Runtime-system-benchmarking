@@ -1,0 +1,38 @@
+mainmodule ucharelib_pagerank {
+	extern module GraphGenerator;
+	extern module uChareLib;
+
+	readonly CmiUInt8 N;
+	readonly double D;
+  // Handle to the test driver (chare)
+  readonly CProxy_TestDriver               driverProxy;
+
+  mainchare TestDriver {
+    entry TestDriver (CkArgMsg *args);
+		entry void startGraphConstruction();
+    entry [threaded] void doPageRank();
+    entry [reductiontarget] void init();
+    entry [reductiontarget] void done();
+  };
+
+	class PageRankEdge; 
+  uchare array [1D] PageRankVertex {
+    entry PageRankVertex();
+		entry void connectVertex(const PageRankEdge & edge);
+		entry void doPageRankStep_init();
+		entry [reentrant] void doPageRankStep_update();
+		entry void update(const double & r);
+		entry void verify();
+		entry void print();
+  };
+
+	group GraphGenerator<CProxy_uChare_PageRankVertex, PageRankEdge, Options>;
+
+//TODO: Can it be hidden?`
+	array [1D] uChareSet<PageRankVertex, CProxy_PageRankVertex, CBase_PageRankVertex>;
+  // Setup required for the communication library
+  message MeshStreamerMessage<ArrayDataItem<Message, long long> >;
+  group ArrayMeshStreamer<Message, long long, 
+				uChareSet<PageRankVertex, CProxy_PageRankVertex, CBase_PageRankVertex>, SimpleMeshRouter>;
+  group MeshStreamer<ArrayDataItem<Message, long long>, SimpleMeshRouter>;
+};

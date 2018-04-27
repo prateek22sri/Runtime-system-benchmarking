@@ -1,0 +1,44 @@
+mainmodule charm_bc {
+	extern module GraphGenerator;
+
+  // Mean arrity of the graph 
+  readonly int                             K;
+  // Graph size (number of vertices)
+  readonly CmiUInt8                         N;
+  readonly CmiUInt8                         M;
+  // Handle to the test driver (chare)
+  readonly CProxy_TestDriver               driverProxy;
+
+  mainchare TestDriver {
+    entry TestDriver (CkArgMsg *args);
+    entry [threaded] void startMultiBFSPhase();
+    entry void startComputeCentralityPhase();
+    entry void restart();
+		entry void startVerificationPhase();
+    entry [reductiontarget] void done();
+		entry void startGraphConstruction();
+		entry void exit();
+  };
+
+	class BetweenCentrEdge;
+  array [1D] BetweenCentrVertex {
+    entry BetweenCentrVertex();
+		entry void connectVertex(const BetweenCentrEdge & edge);
+
+		// multi bfs methods
+		entry void make_root();
+		entry [threaded] void update(unsigned int d, unsigned int paths, CmiUInt8 source); 
+ 
+		// compute centrality methods
+		entry void compute_centrality();
+		entry void update_centrality(unsigned int du, unsigned int dj, 
+				unsigned int paths_to_u, unsigned int paths_to_j, CmiUInt8 j);
+
+		entry void verify();
+		entry void check(int level);
+		entry void dump_edges();
+		entry void dump_dist();
+  };
+
+#include "common-single.ci"
+};

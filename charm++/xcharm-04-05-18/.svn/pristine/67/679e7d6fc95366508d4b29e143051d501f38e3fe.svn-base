@@ -1,0 +1,34 @@
+mainmodule tram_sssp {
+	extern module GraphGenerator;
+
+  // Handle to the test driver (chare)
+  readonly CProxy_TestDriver               driverProxy;
+  // Handle to the communication library (group)
+  readonly CProxy_ArrayMeshStreamer<dtype, long long, SSSPVertex,
+                                    SimpleMeshRouter> aggregator;
+
+  mainchare TestDriver {
+    entry TestDriver (CkArgMsg *args);
+    entry void start();
+    entry void restart();
+		entry void startVerificationPhase();
+    entry [reductiontarget] void done(CmiUInt8 globalNumScannedEdges);
+		entry void startGraphConstruction();
+		entry void exit();
+  };
+
+	class SSSPEdge; 
+  array [1D] SSSPVertex {
+    entry SSSPVertex();
+		entry void connectVertex(const SSSPEdge & edge);
+		entry void make_root();
+		entry [threaded] void process(const dtype & m); 
+		entry [threaded] void update(const dtype & m); 
+		entry void getScannedVertexNum();
+		entry void verify();
+		entry void check(const double & w);
+		entry void print();
+  };
+
+#include "common-single.ci"
+};

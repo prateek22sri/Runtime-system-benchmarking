@@ -1,0 +1,40 @@
+	// Setup required for the graph generation library
+  message MeshStreamerMessage<ArrayDataItem<BetweenCentrEdge, long long> >;
+  group ArrayMeshStreamer<BetweenCentrEdge, long long, BetweenCentrVertex, SimpleMeshRouter>;
+  group MeshStreamer<ArrayDataItem<BetweenCentrEdge, long long>, SimpleMeshRouter>;
+
+	//FIXME:charmxi bug
+	group GraphLib__RMAT_Generator_Charm<BetweenCentrGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex>;
+
+	//FIXME:charmxi bug
+	group GraphLib__RMAT_Generator_Tram<BetweenCentrGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex,
+		CProxy_ArrayMeshStreamer<BetweenCentrEdge, long long, BetweenCentrVertex, SimpleMeshRouter> >;
+
+	//FIXME:charmxi bug
+	group GraphLib__SSCA_Generator_Charm<BetweenCentrGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex>;
+
+	//FIXME:charmxi bug
+	group GraphLib__SSCA_Generator_Tram<BetweenCentrGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex,
+		CProxy_ArrayMeshStreamer<BetweenCentrEdge, long long, BetweenCentrVertex, SimpleMeshRouter> >;
+
+	//FIXME:charmxi bug
+	group GraphLib__Random_Generator_Charm<BetweenCentrGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex>;
+
+	//FIXME:charmxi bug
+	group GraphLib__Random_Generator_Tram<BetweenCentrGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex,
+		CProxy_ArrayMeshStreamer<BetweenCentrEdge, long long, BetweenCentrVertex, SimpleMeshRouter> >;
+
+	//FIXME:charmxi bug
+	group GraphLib__Ring_Generator_Charm<BetweenCentrGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex>;
+
+	//FIXME:charmxi bug
+	group GraphLib__Ring_Generator_Tram<BetweenCentrGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex,
+		CProxy_ArrayMeshStreamer<BetweenCentrEdge, long long, BetweenCentrVertex, SimpleMeshRouter> >;

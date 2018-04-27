@@ -1,0 +1,111 @@
+#CXX= mpic++ -g
+CXX= /home/frolo/local/openmpi-2.0.0-gcc-4.9/bin/mpicxx -g -Wno-deprecated-declarations
+#CXX= /opt/angara64/mak/mpich3_gcc/bin/mpic++ -g
+#CXX= /opt/angara64/mak/mpich3_gcc/bin/mpic++ -O3
+CXX_INCLUDE= -I../tools/GraphHPC-1.0/ -I/home/frolo/local/boost_1_54_0/include \
+						 -I../tools/graph500 -DPROFILE_ENABLED -DDEBUG
+CXX_LIBS=-L/home/frolo/local/boost_1_54_0/lib -lboost_graph -lboost_graph_parallel -lboost_mpi \
+	-lboost_serialization -lboost_system -lboost_timer -lboost_chrono -lboost_program_options -lboost_regex 
+#../tools/GraphHPC-1.0/graph_tools.o
+
+TESTS= pbgl_bfs pbgl_parallel_search \
+			 pbgl_pagerank \
+			 pbgl_sssp pbgl_sssp-undirected\
+			 pbgl_sssp_delta pbgl_sssp_delta-undirected \
+			 pbgl_cc-directed pbgl_cc-undirected pbgl_cc_ps-directed pbgl_cc_ps-undirected
+
+all: $(TESTS) 
+
+##########################################################################################################
+mst: mst.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+mst.o: mst.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE)
+##########################################################################################################
+pbgl_sssp-directed: pbgl_sssp-directed.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_sssp-directed.o: pbgl_sssp.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_DIRECTED
+##########################################################################################################
+pbgl_sssp-undirected: pbgl_sssp-undirected.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_sssp-undirected.o: pbgl_sssp.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_UNDIRECTED
+##########################################################################################################
+pbgl_sssp_delta-directed: pbgl_sssp_delta-directed.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_sssp_delta-directed.o: pbgl_sssp_delta.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_DIRECTED
+##########################################################################################################
+pbgl_sssp_delta-undirected: pbgl_sssp_delta-undirected.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_sssp_delta-undirected.o: pbgl_sssp_delta.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_UNDIRECTED
+##########################################################################################################
+pbgl_bfs-directed: pbgl_bfs-directed.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_bfs-directed.o: pbgl_bfs.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_DIRECTED
+##########################################################################################################
+pbgl_bfs-undirected: pbgl_bfs-undirected.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_bfs-undirected.o: pbgl_bfs.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_UNDIRECTED
+##########################################################################################################
+pbgl_cc-directed: pbgl_cc-directed.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_cc-directed.o: pbgl_cc.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_DIRECTED
+##########################################################################################################
+pbgl_cc-undirected: pbgl_cc-undirected.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_cc-undirected.o: pbgl_cc.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_UNDIRECTED
+##########################################################################################################
+pbgl_cc_ps-directed: pbgl_cc_ps-directed.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_cc_ps-directed.o: pbgl_cc.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_DIRECTED -DCC_PS
+##########################################################################################################
+pbgl_cc_ps-undirected: pbgl_cc_ps-undirected.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_cc_ps-undirected.o: pbgl_cc.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE) -DGRAPH_UNDIRECTED -DCC_PS
+##########################################################################################################
+pbgl_pagerank: pbgl_pagerank.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+pbgl_pagerank.o: pbgl_pagerank.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE)
+##########################################################################################################
+simple_test: simple_test.o
+	$(CXX) -o $@ $< $(CXX_LIBS)
+
+simple_test.o: simple_test.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE)
+##########################################################################################################
+distributed_connected_components_test: distributed_connected_components_test.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+distributed_connected_components_test.o: distributed_connected_components_test.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE)
+##########################################################################################################
+algorithm_performance: algorithm_performance.o
+	$(CXX) -o $@ $< $(CXX_LIBS) 
+
+algorithm_performance.o: algorithm_performance.cpp
+	$(CXX) -c -o $@ $< $(CXX_INCLUDE)
+
+clean:
+	rm -f *.o $(TESTS)

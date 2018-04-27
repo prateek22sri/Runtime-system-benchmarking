@@ -1,0 +1,32 @@
+
+	// Setup required for the graph generation library
+  message MeshStreamerMessage<ArrayDataItem<std::pair<CmiUInt8, SSSPEdge>, long long> >;
+  group ArrayMeshStreamer<std::pair<CmiUInt8, SSSPEdge>, long long, SSSPMultiVertex, SimpleMeshRouter>;
+  group MeshStreamer<ArrayDataItem<std::pair<CmiUInt8, SSSPEdge>, long long>, SimpleMeshRouter>;
+
+	//FIXME:charmxi bug
+	group GraphLib__RMAT_Generator_Tram<SSSPGraph, Options,		
+		GraphLib::VertexMapping::MultiVertex,
+		CProxy_ArrayMeshStreamer<std::pair<CmiUInt8, SSSPEdge>, long long, SSSPMultiVertex, SimpleMeshRouter> >;
+
+	//FIXME:charmxi bug
+	group GraphLib__RMAT_Generator_Charm<SSSPGraph, Options,		
+		GraphLib::VertexMapping::MultiVertex>;
+
+	//FIXME:charmxi bug
+	group GraphLib__SSCA_Generator_Tram<SSSPGraph, Options,		
+		GraphLib::VertexMapping::MultiVertex,
+		CProxy_ArrayMeshStreamer<std::pair<CmiUInt8, SSSPEdge>, long long, SSSPMultiVertex, SimpleMeshRouter> >;
+
+	//FIXME:charmxi bug
+	group GraphLib__SSCA_Generator_Charm<SSSPGraph, Options,		
+		GraphLib::VertexMapping::MultiVertex>;
+
+	//FIXME:charmxi bug
+	group GraphLib__Random_Generator_Tram<SSSPGraph, Options,		
+		GraphLib::VertexMapping::MultiVertex,
+		CProxy_ArrayMeshStreamer<std::pair<CmiUInt8, SSSPEdge>, long long, SSSPMultiVertex, SimpleMeshRouter> >;
+
+	//FIXME:charmxi bug
+	group GraphLib__Random_Generator_Charm<SSSPGraph, Options,		
+		GraphLib::VertexMapping::MultiVertex>;

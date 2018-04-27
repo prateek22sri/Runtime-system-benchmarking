@@ -1,0 +1,46 @@
+mainmodule charm_bfs_queue {
+	extern module GraphGenerator;
+
+  // Mean arrity of the graph 
+  readonly int                             K;
+  // Graph size (number of vertices)
+  readonly CmiUInt8                         N;
+  readonly CmiUInt8                         M;
+  // Handle to the test driver (chare)
+  readonly CProxy_TestDriver               driverProxy;
+
+  mainchare TestDriver {
+    entry TestDriver (CkArgMsg *args);
+    entry [threaded] void start();
+    entry [threaded] void restart();
+		entry void startVerificationPhase();
+    entry [reductiontarget] void done(CmiUInt8 globalNumScannedEdges);
+		entry void startGraphConstruction();
+		entry void exit();
+		entry void set_fin();
+  };
+
+	class BFSEdge;
+  array [1D] BFSVertex {
+    entry BFSVertex();
+		entry void connectVertex(const BFSEdge & edge);
+		entry void make_root();
+		entry void update(int level, CmiUInt8 parent); 
+		entry void resume();
+		entry void getScannedVertexNum();
+		entry void verify();
+		entry void check(int level);
+		entry void dump_edges();
+  };
+
+	readonly CProxy_BFSQueue Q;
+	group BFSQueue {
+		entry BFSQueue(CProxy_BFSVertex & g);
+		entry void addVertex(CmiUInt8 v);
+		entry [threaded] void run();
+		entry void test();
+		entry [reductiontarget] void check(CmiUInt8 tot);
+	};
+
+#include "common-single.ci"
+};

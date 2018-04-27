@@ -1,0 +1,52 @@
+mainmodule charm_parallel_search {
+	extern module GraphGenerator;
+
+  // Mean arrity of the graph 
+  readonly int                             K;
+  // Graph size (number of vertices)
+  readonly CmiUInt8                         N;
+  readonly CmiUInt8                         M;
+  // Handle to the test driver (chare)
+  readonly CProxy_TestDriver               driverProxy;
+
+  mainchare TestDriver {
+    entry TestDriver (CkArgMsg *args);
+    entry void start();
+    entry void restart();
+		entry void startVerificationPhase();
+    entry [reductiontarget] void done(CmiUInt8 total);
+		entry void startGraphConstruction();
+    entry void exit();
+  };
+
+	class BFSEdge;
+  array [1D] BFSVertex {
+    entry BFSVertex();
+		entry void make_root();
+		entry void connectVertex(const BFSEdge & edge);
+		entry void update(); 
+		entry void getScannedEdgesNum();
+		entry void getScannedVertexNum();
+		entry void print();
+		entry void verify();
+		entry void check();
+  };
+
+	// Setup required for the graph generation library
+  message MeshStreamerMessage<ArrayDataItem<BFSEdge, long long> >;
+  group ArrayMeshStreamer<BFSEdge, long long, BFSVertex, SimpleMeshRouter>;
+  group MeshStreamer<ArrayDataItem<BFSEdge, long long>, SimpleMeshRouter>;
+
+	//FIXME:charmxi bug
+	group GraphLib__Generator_Tram<BFSGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex,
+		GraphLib::GraphType::Directed,
+		GraphLib::GraphGeneratorType::Kronecker,
+		CProxy_ArrayMeshStreamer<BFSEdge, long long, BFSVertex, SimpleMeshRouter> >;
+
+	//FIXME:charmxi bug
+	group GraphLib__Generator_Charm<BFSGraph, Options,		
+		GraphLib::VertexMapping::SingleVertex,
+		GraphLib::GraphType::Directed,
+		GraphLib::GraphGeneratorType::Kronecker>;
+};

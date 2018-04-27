@@ -1,0 +1,12 @@
+#ifndef __DataTypes_h__
+#define __DataTypes_h__
+#include "charm++.h"
+
+namespace GraphLib {
+	typedef CmiUInt8 VertexId;
+	typedef enum {SingleVertex = 0, MultiVertex} VertexMapping;
+	typedef enum {Directed = 0, Undirected} GraphType;
+	typedef enum {Charm = 0, Tram, uChareLib} TransportType;
+	typedef enum {RMAT = 0, SSCA, Random, Ring} GraphGeneratorType;
+}
+#endif

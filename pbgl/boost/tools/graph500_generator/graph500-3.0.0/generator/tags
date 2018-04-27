@@ -1,0 +1,104 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+FAST_64BIT_ARITHMETIC	user_settings.h	18;"	d
+GENERATOR_USE_PACKED_EDGE_TYPE	user_settings.h	15;"	d
+GRAPH_GENERATOR_H	graph_generator.h	11;"	d
+INITIATOR_A_NUMERATOR	graph_generator.c	27;"	d	file:
+INITIATOR_BC_NUMERATOR	graph_generator.c	28;"	d	file:
+INITIATOR_DENOMINATOR	graph_generator.c	29;"	d	file:
+MAKE_GRAPH_H	make_graph.h	11;"	d
+MOD_ARITH_32BIT_H	mod_arith_32bit.h	11;"	d
+MOD_ARITH_64BIT_H	mod_arith_64bit.h	11;"	d
+MOD_ARITH_H	mod_arith.h	11;"	d
+OMP	utils.c	32;"	d	file:
+OMP	utils.c	34;"	d	file:
+SPK_NOISE_LEVEL	graph_generator.c	38;"	d	file:
+SPLITTABLE_MRG_H	splittable_mrg.h	11;"	d
+USER_SETTINGS_H	user_settings.h	11;"	d
+USE_GCC_BYTESWAP	graph_generator.c	85;"	d	file:
+UTILS_H	utils.h	11;"	d
+__STDC_CONSTANT_MACROS	utils.c	11;"	d	file:
+__STDC_FORMAT_MACROS	graph_generator.c	15;"	d	file:
+__STDC_FORMAT_MACROS	graph_generator.h	19;"	d
+__STDC_FORMAT_MACROS	splittable_mrg.c	13;"	d	file:
+a	splittable_mrg.c	/^  uint_fast32_t a, b, c, d;$/;"	m	struct:mrg_transition_matrix	file:
+b	splittable_mrg.c	/^  uint_fast32_t a, b, c, d;$/;"	m	struct:mrg_transition_matrix	file:
+bitreverse	graph_generator.c	/^static inline uint64_t bitreverse(uint64_t x) {$/;"	f	file:
+c	splittable_mrg.c	/^  uint_fast32_t a, b, c, d;$/;"	m	struct:mrg_transition_matrix	file:
+d	splittable_mrg.c	/^  uint_fast32_t a, b, c, d;$/;"	m	struct:mrg_transition_matrix	file:
+dump_mrg	splittable_mrg.c	/^void dump_mrg(FILE* out, const mrg_transition_matrix* m) {$/;"	f
+dump_mrg_powers	splittable_mrg.c	/^void dump_mrg_powers(void) {$/;"	f
+generate_4way_bernoulli	graph_generator.c	/^static int generate_4way_bernoulli(mrg_state* st, int level, int nlevels) {$/;"	f	file:
+generate_kronecker_range	graph_generator.c	/^void generate_kronecker_range($/;"	f
+get_v0_from_edge	graph_generator.h	/^static inline int64_t get_v0_from_edge(const packed_edge* p) {$/;"	f
+get_v1_from_edge	graph_generator.h	/^static inline int64_t get_v1_from_edge(const packed_edge* p) {$/;"	f
+high	graph_generator.h	/^  uint32_t high; \/* v1 in high half, v0 in low half *\/$/;"	m	struct:packed_edge
+main	splittable_mrg.c	/^int main(int argc, char** argv) {$/;"	f
+make_graph	make_graph.c	/^void make_graph(int log_numverts, int64_t M, uint64_t userseed1, uint64_t userseed2, int64_t* nedges_ptr_in, packed_edge** result_ptr_in) {$/;"	f
+make_mrg_seed	utils.c	/^void make_mrg_seed(uint64_t userseed1, uint64_t userseed2, uint_fast32_t* seed) {$/;"	f
+make_one_edge	graph_generator.c	/^void make_one_edge(int64_t nverts, int level, int lgN, mrg_state* st, packed_edge* result, uint64_t val0, uint64_t val1) {$/;"	f	file:
+make_random_numbers	make_graph.c	/^void make_random_numbers($/;"	f
+mod_add	mod_arith_32bit.h	/^static inline uint_fast32_t mod_add(uint_fast32_t a, uint_fast32_t b) {$/;"	f
+mod_add	mod_arith_64bit.h	/^static inline uint_fast32_t mod_add(uint_fast32_t a, uint_fast32_t b) {$/;"	f
+mod_mac	mod_arith_32bit.h	/^static inline uint_fast32_t mod_mac(uint_fast32_t sum, uint_fast32_t a, uint_fast32_t b) {$/;"	f
+mod_mac	mod_arith_64bit.h	/^static inline uint_fast32_t mod_mac(uint_fast32_t sum, uint_fast32_t a, uint_fast32_t b) {$/;"	f
+mod_mac2	mod_arith_32bit.h	/^static inline uint_fast32_t mod_mac2(uint_fast32_t sum, uint_fast32_t a, uint_fast32_t b, uint_fast32_t c, uint_fast32_t d) {$/;"	f
+mod_mac2	mod_arith_64bit.h	/^static inline uint_fast32_t mod_mac2(uint_fast32_t sum, uint_fast32_t a, uint_fast32_t b, uint_fast32_t c, uint_fast32_t d) {$/;"	f
+mod_mac3	mod_arith_32bit.h	/^static inline uint_fast32_t mod_mac3(uint_fast32_t sum, uint_fast32_t a, uint_fast32_t b, uint_fast32_t c, uint_fast32_t d, uint_fast32_t e, uint_fast32_t f) {$/;"	f
+mod_mac3	mod_arith_64bit.h	/^static inline uint_fast32_t mod_mac3(uint_fast32_t sum, uint_fast32_t a, uint_fast32_t b, uint_fast32_t c, uint_fast32_t d, uint_fast32_t e, uint_fast32_t f) {$/;"	f
+mod_mac4	mod_arith_32bit.h	/^static inline uint_fast32_t mod_mac4(uint_fast32_t sum, uint_fast32_t a, uint_fast32_t b, uint_fast32_t c, uint_fast32_t d, uint_fast32_t e, uint_fast32_t f, uint_fast32_t g, uint_fast32_t h) {$/;"	f
+mod_mac4	mod_arith_64bit.h	/^static inline uint_fast32_t mod_mac4(uint_fast32_t sum, uint_fast32_t a, uint_fast32_t b, uint_fast32_t c, uint_fast32_t d, uint_fast32_t e, uint_fast32_t f, uint_fast32_t g, uint_fast32_t h) {$/;"	f
+mod_mac_y	mod_arith_32bit.h	/^static inline uint_fast32_t mod_mac_y(uint_fast32_t sum, uint_fast32_t a) {$/;"	f
+mod_mac_y	mod_arith_64bit.h	/^static inline uint_fast32_t mod_mac_y(uint_fast32_t sum, uint_fast32_t a) {$/;"	f
+mod_mul	mod_arith_32bit.h	/^static inline uint_fast32_t mod_mul(uint_fast32_t a, uint_fast32_t b) {$/;"	f
+mod_mul	mod_arith_64bit.h	/^static inline uint_fast32_t mod_mul(uint_fast32_t a, uint_fast32_t b) {$/;"	f
+mod_mul_x	mod_arith_32bit.h	/^static inline uint_fast32_t mod_mul_x(uint_fast32_t a) {$/;"	f
+mod_mul_x	mod_arith_64bit.h	/^static inline uint_fast32_t mod_mul_x(uint_fast32_t a) {$/;"	f
+mod_mul_y	mod_arith_32bit.h	/^static inline uint_fast32_t mod_mul_y(uint_fast32_t a) {$/;"	f
+mod_mul_y	mod_arith_64bit.h	/^static inline uint_fast32_t mod_mul_y(uint_fast32_t a) {$/;"	f
+mrg_apply_transition	splittable_mrg.c	/^static void mrg_apply_transition(const mrg_transition_matrix* restrict mat, const mrg_state* restrict st, mrg_state* r) {$/;"	f	file:
+mrg_get_double_orig	splittable_mrg.c	/^double mrg_get_double_orig(mrg_state* state) {$/;"	f
+mrg_get_float_orig	splittable_mrg.c	/^float mrg_get_float_orig(mrg_state* state) {$/;"	f
+mrg_get_uint_orig	splittable_mrg.c	/^uint_fast32_t mrg_get_uint_orig(mrg_state* state) {$/;"	f
+mrg_make_A	splittable_mrg.c	/^static void mrg_make_A(mrg_transition_matrix* result) { \/* Initial RNG transition matrix *\/$/;"	f	file:
+mrg_make_identity	splittable_mrg.c	/^static void mrg_make_identity(mrg_transition_matrix* result) {$/;"	f	file:
+mrg_multiply	splittable_mrg.c	/^static void mrg_multiply(const mrg_transition_matrix* restrict m, const mrg_transition_matrix* restrict n, mrg_transition_matrix* result) {$/;"	f	file:
+mrg_orig_step	splittable_mrg.c	/^static void mrg_orig_step(mrg_state* state) { \/* Use original A, not fully optimized yet *\/$/;"	f	file:
+mrg_power	splittable_mrg.c	/^static void mrg_power(const mrg_transition_matrix* restrict m, unsigned int exponent, mrg_transition_matrix* restrict result) {$/;"	f	file:
+mrg_seed	splittable_mrg.c	/^void mrg_seed(mrg_state* st, const uint_fast32_t seed[5]) {$/;"	f
+mrg_skip	splittable_mrg.c	/^void mrg_skip(mrg_state* state, uint_least64_t exponent_high, uint_least64_t exponent_middle, uint_least64_t exponent_low) {$/;"	f
+mrg_skip_matrices	mrg_transitions.c	/^const mrg_transition_matrix mrg_skip_matrices[][256] = {$/;"	v
+mrg_skip_matrices	splittable_mrg.c	/^const mrg_transition_matrix mrg_skip_matrices[][256] = {}; \/* Dummy version *\/$/;"	v
+mrg_state	splittable_mrg.h	/^typedef struct mrg_state {$/;"	s
+mrg_state	splittable_mrg.h	/^} mrg_state;$/;"	t	typeref:struct:mrg_state
+mrg_step	splittable_mrg.c	/^static void mrg_step(const mrg_transition_matrix* mat, mrg_state* state) {$/;"	f	file:
+mrg_transition_matrix	splittable_mrg.c	/^typedef struct mrg_transition_matrix {$/;"	s	file:
+mrg_transition_matrix	splittable_mrg.c	/^} mrg_transition_matrix;$/;"	t	typeref:struct:mrg_transition_matrix	file:
+mrg_update_cache	splittable_mrg.c	/^static void mrg_update_cache(mrg_transition_matrix* restrict p) { \/* Set a, b, c, and d *\/$/;"	f	file:
+numa_avail	utils.c	/^static int numa_avail = -1;$/;"	v	file:
+numa_inited	utils.c	/^static int numa_inited = 0;$/;"	v	file:
+packed_edge	graph_generator.h	/^typedef struct packed_edge {$/;"	s
+packed_edge	graph_generator.h	/^} packed_edge;$/;"	t	typeref:struct:packed_edge
+s	splittable_mrg.c	/^  uint_fast32_t s, t, u, v, w;$/;"	m	struct:mrg_transition_matrix	file:
+scramble	graph_generator.c	/^static inline int64_t scramble(int64_t v0, int lgN, uint64_t val0, uint64_t val1) {$/;"	f	file:
+t	splittable_mrg.c	/^  uint_fast32_t s, t, u, v, w;$/;"	m	struct:mrg_transition_matrix	file:
+u	splittable_mrg.c	/^  uint_fast32_t s, t, u, v, w;$/;"	m	struct:mrg_transition_matrix	file:
+v	splittable_mrg.c	/^  uint_fast32_t s, t, u, v, w;$/;"	m	struct:mrg_transition_matrix	file:
+v0	graph_generator.h	/^  int64_t v0;$/;"	m	struct:packed_edge
+v0_low	graph_generator.h	/^  uint32_t v0_low;$/;"	m	struct:packed_edge
+v1	graph_generator.h	/^  int64_t v1;$/;"	m	struct:packed_edge
+v1_low	graph_generator.h	/^  uint32_t v1_low;$/;"	m	struct:packed_edge
+w	splittable_mrg.c	/^  uint_fast32_t s, t, u, v, w;$/;"	m	struct:mrg_transition_matrix	file:
+write_edge	graph_generator.h	/^static inline void write_edge(packed_edge* p, int64_t v0, int64_t v1) {$/;"	f
+xcalloc	utils.c	/^xcalloc (size_t n, size_t sz)$/;"	f
+xfree	utils.c	/^xfree (void * p, size_t sz)$/;"	f
+xmalloc	utils.c	/^xmalloc (size_t sz)$/;"	f
+z1	splittable_mrg.h	/^  uint_fast32_t z1, z2, z3, z4, z5;$/;"	m	struct:mrg_state
+z2	splittable_mrg.h	/^  uint_fast32_t z1, z2, z3, z4, z5;$/;"	m	struct:mrg_state
+z3	splittable_mrg.h	/^  uint_fast32_t z1, z2, z3, z4, z5;$/;"	m	struct:mrg_state
+z4	splittable_mrg.h	/^  uint_fast32_t z1, z2, z3, z4, z5;$/;"	m	struct:mrg_state
+z5	splittable_mrg.h	/^  uint_fast32_t z1, z2, z3, z4, z5;$/;"	m	struct:mrg_state

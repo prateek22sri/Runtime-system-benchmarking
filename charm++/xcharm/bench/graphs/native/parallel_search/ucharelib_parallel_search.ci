@@ -1,0 +1,55 @@
+mainmodule ucharelib_parallel_search {
+	extern module GraphGenerator;
+	extern module uChareLib;
+
+  // Mean arrity of the graph 
+  readonly int                             K;
+  // Graph size (number of vertices)
+  readonly CmiUInt8                         N;
+  // Handle to the test driver (chare)
+  readonly CProxy_TestDriver               driverProxy;
+
+  mainchare TestDriver {
+    entry TestDriver (CkArgMsg *args);
+    entry void start();
+		entry void restart();
+		entry void startVerificationPhase();
+		entry [reductiontarget] void done(CmiUInt8 globalNumScannedEdges);
+		entry void startGraphConstruction();
+		entry void exit();
+
+
+
+  };
+
+	class BFSEdge;
+  uchare array [1D] BFSVertex {
+    //entry BFSVertex();
+		entry void make_root();
+		entry void connectVertex(const BFSEdge & edge);
+		entry void update(); 
+		entry void getScannedEdgesNum();
+		entry void getScannedVertexNum();
+		entry void verify();
+  };
+
+
+	// Setup required for the graph generation library
+	message MeshStreamerMessage<ArrayDataItem<BFSEdge, long long> >;
+	group ArrayMeshStreamer<BFSEdge, long long, BFSVertex, SimpleMeshRouter>;
+	group MeshStreamer<ArrayDataItem<BFSEdge, long long>, SimpleMeshRouter>;
+
+	//FIXME:charmxi bug
+	group GraphLib__RMAT_Generator_Charm<BFSGraph, Options,   
+				GraphLib::VertexMapping::SingleVertex>;
+	//group GraphGenerator<CProxy_uChare_BFSVertex, BFSEdge, Options>;
+
+
+//TODO: Can it be hidden?`
+	array [1D] uChareSet<BFSVertex, CProxy_BFSVertex, CBase_BFSVertex>;
+  // Setup required for the communication library
+  message MeshStreamerMessage<ArrayDataItem<Message, long long> >;
+  group ArrayMeshStreamer<Message, long long, 
+				uChareSet<BFSVertex, CProxy_BFSVertex, CBase_BFSVertex>, SimpleMeshRouter>;
+  group MeshStreamer<ArrayDataItem<Message, long long>, SimpleMeshRouter>;
+};

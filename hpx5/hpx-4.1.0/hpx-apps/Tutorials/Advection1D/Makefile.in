@@ -1,0 +1,19 @@
+LIBS    = $(shell pkg-config --libs --static @HPX_PKG@)
+CFLAGS += $(shell pkg-config --cflags @HPX_PKG@)
+CFLAGS += @CFLAGS@
+LDFLAGS += @LDFLAGS@
+
+CC = @CC@ -DM_PI=3.14159265358979323846
+
+LINKER = $(CC)
+TARGETS = advection4 advection3 advection2 advection1 advection0
+
+all: $(TARGETS)
+
+$(TARGETS): %: %.c
+	$(LINKER) $(LDFLAGS) $(CFLAGS) -o $@ $^ $(LIBS) -lm
+
+clean:
+	rm -rf $(TARGETS) *~ *.txt
+help:
+	@echo "Usage: ./$(TARGET) [options]"

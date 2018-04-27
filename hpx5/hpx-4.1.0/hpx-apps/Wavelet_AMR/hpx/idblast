@@ -1,0 +1,60 @@
+###########################################################################
+#
+#
+#
+###########################################################################
+xmin := -1.0
+xmax := 1.0
+ymin := -1.0
+ymax := 1.0
+
+tf   := 2.0
+max_iter := 10
+cfl := 0.2
+
+use_wave_speeds := 1
+
+# this controls the refinement tolerance in the wavelets
+epsilon := 1.0e-4
+
+# when set to one, this enables output delineated by refinement level
+# in addition to standard DV/xvs compatible output
+output_by_level := 0
+
+# data output frequency
+output_frequency := 1
+
+# frequency of stdout printout
+print_frequency := 1
+
+# fields you wish to output
+output_functions := ["rho" "vx" "p"]
+
+boundaries [ "outflow" "outflow" "outflow" "outflow" ]
+#boundaries := [ "outflow" "outflow" ]
+
+
+###########################################################################
+#
+#  F l u i d   P a r a m e t e r s
+#
+###########################################################################
+gamma := 1.3333333333333
+
+
+###########################################################################
+#
+#   I n i t i a l   D a t a 
+#
+###########################################################################
+id_type      := 2
+
+id_indep_coord := 0
+
+id_amp       := 1.0
+id_x0        := 0.0
+id_sigma     := 0.04
+id_kappa     := 10.0
+
+
+

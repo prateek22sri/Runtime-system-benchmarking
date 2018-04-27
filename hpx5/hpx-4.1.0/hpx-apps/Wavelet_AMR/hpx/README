@@ -1,0 +1,5 @@
+### To build against cross-compiled HPX on Babbage
+  make CC=mpiicc CXX=mpiicpc CCFLAGS="-mmic -Wall -O3 -g -std=gnu99 -DHPX" LKFLAGS="-mmic"
+
+### When compiling with cray wrappers use
+  make CC=cc CXX=CC CCFLAGS="-Wall -O3 -g -std=gnu99" DFLAGS="-DHPX"

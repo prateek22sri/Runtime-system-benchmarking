@@ -1,0 +1,13 @@
+Two tutorial codes useful for learning about HPX-5. The text of the tutorials
+can be found at https://hpx.crest.iu.edu/tutorials.
+
+Advection1D:
+  A series of five codes building toward a solution of the one-dimensional 
+  advection equation.
+
+1dtree:
+  A simple one-dimensional tree code for computing the potential for each 
+  point mass in a collection of point masses due to the other masses.
+
+For more details please see the README file in each subdirectory.
+

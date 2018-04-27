@@ -1,0 +1,4 @@
+x86_64/libarch_la-transfer.lo: x86_64/transfer.S \
+ x86_64/../common/asm_macros.h
+
+x86_64/../common/asm_macros.h:

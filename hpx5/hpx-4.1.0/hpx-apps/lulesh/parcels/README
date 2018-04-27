@@ -1,0 +1,58 @@
+This version of Lulesh is closely based on the reference MPI version and uses
+the HPX-5 global address space for domain allocation, HPX-5 parcels and LCOs for
+asynchronous, neighborhood communication, and HPX-5 process collectives for
+allreduce operations.
+
+* To build Lulesh/HPX-5 follow the following steps.
+
+1) Build and install HPX-5.
+
+2) Ensure that the HPX-5 pkg-config path is in your PKG_CONFIG_PATH, or use
+`--with-hpx=<path-to-hpx.pc>` below.
+
+3) Configure Lulesh/HPX-5.
+
+   Lulesh/HPX-5 uses standard autotools configuration. We recommend setting
+   CFLAGS=-O3 for performance testing.
+
+   - performance: ./configure CFLAGS="-O3"
+   - debug: ./configure CFLAGS="-O0 -g"
+
+To run:
+
+mpirun -np <localities> --map-by node:pe=<cores per process> ./luleshparcels \
+  -n <lulesh domains> -x <domain size> -i <iterations>
+
+This version of lulesh takes the following arguments:
+
+  -n <domain> is the number of domains over which to run
+  -x <points> is the number of points each domain will have
+  -i <iterations> is the number of iterations to perform
+
+Note that the number of domains must be cubic. Unlike the reference MPI
+implementation, in HPX-5 it is not necessary for the number of domains to be
+related to the number of processes or cores.
+
+Notes:
+
+1) You can change the number of points each domain has. Previous publications
+   have used -x 24, 32 and 48, with 48 being the preferred domain size for the
+   MPI  reference implementation of Lulesh. The number of iterations is
+   typically 500 in published works, where each iteration usually averages from
+   150 to 250 ms for weakly scaled, x=48 runs.
+
+2) For small scale runs (e.g, up to 19k cores), Lulesh/HPX-5 gets the best
+   results running small, oversubscribed domains, relative to the reference MPI
+   implementation. As an example, when comparing against MPI run on 8k cores
+   with (domains, points) as (8k, 48), Lulesh/HPX-5 could be tested at (27k, 32)
+   and (64k, 24). At scales above 19k the 2.1 release of Lulesh/HPX-5 suffers
+   allreaduce scalability bottlenecks for this oversubscription strategy and
+   48^3 domains can be used.
+
+3) The default allocator in HPX-5, jemalloc, performs slightly worse than
+   Intel's tbbmalloc for Lulesh/HPX-5. You may disable dirty page purging in
+   jemalloc by setting `MALLOC_CONF=lg_dirty_mult:-1` either in your environment
+   or the command line. This occasionally causes Lulesh/HPX-5 to run out of
+   memory. See https://gitlab.crest.iu.edu/extreme/hpx/issues/40 for more
+   details. We recommend building HPX-5 with tbbmalloc, when available, for use
+   in Lulesh/HPX-5---see HPX-5 documentation for details.

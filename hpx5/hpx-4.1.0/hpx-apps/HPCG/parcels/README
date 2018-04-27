@@ -1,0 +1,89 @@
+mpirun -np 7 -map-by node:pe=8 ./hpcg -d 64  -p 1 --hpx-photon-ibdev=qib0 --hpx-threads=8 : -np 1 -map-by node:pe=8 perf record ./hpcg -d 64  -p 1 --hpx-photon-ibdev=qib0 --hpx-threads=8
+
+perf report
+
+mpirun -np 1 -map-by node:pe=16 perf record ./hpcg -d 16 -p 1 --hpx-photon-ibdev=qib0 --hpx-threads=16
+
+Developer: andersmw@indiana.edu
+This version of HPCG is based off of the HPCG reference implementation version 2.4.
+
+To build:  
+
+  If you have pkg-config installed on your machine:
+
+  1) Install HPX-5. Set the PKG_CONFIG_PATH to point to the <prefix>/lib/pkgconfig directory.
+
+   i.e.  export PKG_CONFIG_PATH=<your hpx install directory>/lib/pkgconfig:$PKG_CONFIG_PATH
+
+  2) Set the C and C++ compiler in the first two lines of the Makefile.
+
+  i.e.  CC = gcc
+        CXX = mpicxx 
+
+  3) type Make
+
+  If you do not have pkg-config installed on your machine:
+
+  Add to the CFLAGS in the Makefile -I/<your hpx install directory>/include
+ 
+  Add to the LKFLAGS in the Makefile 
+  -L/<your hpx install directory>/lib -lhpx -lrt -lm -lstdc++ -lsync -ljemalloc -lffi 
+  (minor variations possible)
+
+  4) To cross compile for Babbage use:
+     make CC=mpiicc CXX=mpiicpc CCFLAGS="-mmic -Wall -O3 -g -std=gnu99" CXXFLAGS="-mmic -O3 -g -std=gnu99" LKFLAGS="-mmic"
+
+To run:
+
+  The HPX-5 HPCG version supports 3 different approaches to Sparse Matrix Vector 
+multiplication:  parcels, memput with an extra copy, and memput copyless.  For each
+of these approaches, an overdecomposition modality is also supported.  For large
+overdecomposition factors, core major decomposition is provided as an option.
+
+  Each of these options is controlled by command line.  A summary is provided with the '-h'
+option.
+
+./hpcg -h
+Usage:  hpcg will read the hpcg.dat file for parameters.
+There are a few command line parameters to tune and experiment with the HPX-5 implementation.
+hpcg [options]
+	 -d <number of domains>, turns on overdecomposition
+	 -n <any int>, turns off SpMV parallel for
+	 -x <chunksize>, turns off SpMV HPX parallel for; uses chunksize to aggregate
+	 -m <any int>, turns on memput copy modality, turns off parcels
+	 -o <any int>, turns on memput copyless modality, turns off parcels
+	 -c <any int>, turns on core major decomposition
+	 -h, help
+
+  The local problem size for each hpcg instance is given in the hpcg.dat file.  It can
+also be specified on the command line (see hpcg reference instructions for details).
+ 
+Some example usage:
+
+Running 32 domains of size 64 x 64 x 64 each on 1 node with 32 HPX threads using parcels:
+
+in hpcg.dat,place:
+64 64 64
+10
+
+then run:
+
+mpirun -np 1 ./hpcg -d 32 --hpx-threads=32
+
+Running 100 domains of size 64 x 64 x 64 each on 1 node with 32 HPX threads using parcels:
+
+in hpcg.dat,place:
+64 64 64
+10
+
+mpirun -np 1 ./hpcg -d 100 --hpx-threads=32
+
+Running 16000 domains of size 64 x 64 x 64 each on 500 nodes with 32 HPX threads per node
+using parcels:
+
+in hpcg.dat,place:
+64 64 64
+10
+
+mpirun -np 500 ./hpcg -d 16000 --hpx-threads=32
+

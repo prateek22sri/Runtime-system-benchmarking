@@ -1,0 +1,166 @@
+HPX–5 Version 4.1.0 Release Notes
+---------------------------------
+
+Release date: 05/09/2017
+
+Distributed under the Indiana University License.
+(See accompanying file LICENSE.txt) 
+
+HPX-5 is the High Performance ParalleX runtime library, a state-of-the-art 
+runtime system from the Center for Research in Extreme Scale Technology (CREST) 
+at Indiana University for exascale-scale computing. HPX-5 employs dynamic and 
+adaptive resource management and task scheduling to achieve the significant 
+improvements in efficiency and scalability necessary to deploy many classes of 
+parallel applications at exascale. Although still under development, HPX-5 
+supports a diverse set of systems, is reliable and programmable, is scalable 
+across multi-core and multi-node systems, and delivers efficiency improvements 
+for irregular, time-varying problems. HPX-5 is a realization of ParalleX, an 
+abstract crosscutting execution model, which establishes the runtime's roles 
+and responsibilities with respect to other interoperating system layers, and is 
+evaluated within the SLOWER performance model that provide a framework for 
+performance, understanding, and optimization.
+
+HPX-5 is a reduction to practice of the revolutionary ParalleX execution model, 
+which establishes roles and responsibilities between layers in an exascale 
+system and supports dynamic and adaptive resource management and scheduling. 
+It is implemented in portable C99 and is organized around a cooperative 
+lightweight thread scheduler, a global address space, an active-message parcel 
+transport, and a group of globally addressable local synchronization object 
+classes. Internally, the infrastructure is built on scalable concurrent data 
+structures to minimize shared-memory synchronization overhead. The global 
+address space and parcel transport are based on the innovative Photon network 
+transport library, which supports low-level access to network hardware and 
+provides RDMA with remote completion events for low overhead signaling. An 
+alternative ISend/IRecv network layer is included for portability, along with 
+a reference MPI implementation. HPX-5 is compatible with Linux running on Intel 
+x86,  Intel Knights Landing, MAC OSX, IBM Power8 and various ARM core platforms 
+(including both ARMv7 and ARMv8/Aarch64).
+
+Contents
+-----------
+
+The HPX–5 distribution contains two top-level directories.
+
+/hpx
+This contains the HPX–5 interface and runtime library implementation, along with
+ examples, the test suite, and third-party dependencies. The project installs 
+the HPX–5 headers and the libhpx.{a,so} runtime library, along with built 
+dependencies and an hpx.pc file for use with pkg-config for external projects.
+
+/hpx-apps
+This contains example applications designed to depend on an installed instance 
+of HPX–5, and should serve as a usage model. In particular, it includes a 
+tutorial as well as the Lulesh, Wavelet-AMR, HPCG, CoMD, and SSSP applications.
+
+HPX-5 General Information
+----------------------------
+This document contains the release notes for the HPX–5 exascale runtime system, 
+version 4.1.0.
+
+HPX-5 API
+==========
+1. Extended the HPX C++ API to better support global_ptr functionality.
+2. Added an external interface for capturing the current thread continuation as
+ a parcel for direct use by clients in a call-with-current-continuation semantic 
+ way.
+3. Added an interface hpx_initialized, to check if the runtime is initialized.
+
+libhpx API
+===========
+1. Export the condition variable interfaces for direct use in applications.
+2. Export an interface to get a parcel's source locality.
+
+HPX Implementation
+====================
+The HPX-5 implementation is extended with initial support for the IBM Power8 
+and Intel Knights Landing architectures.
+
+Dependencies changes
+---------------------------
+1. jemalloc has been upgraded to 4.5.0
+2. libcuckoo has been upgraded to 47a84221afd3c13efafa13cf655195f8bbc08c3c
+
+Bug Fixes
+-----------
+1. Fixed a bug in the pwc network code that triggered errors during shutdown.
+
+Application Updates
+--------------------
+No application updates.
+
+Known bugs & limitations in the release
+-----------------------------------------
+1. The ISIR backend may suffer deadlocks when built with jemalloc running on 
+OpenMPI (see https://github.com/jemalloc/jemalloc/issues/500). This appears to 
+only manifest for very large message sizes (greater than 4MB in our testing). 
+We recommend tbbmalloc for ISIR when available.
+2. HPX-5 on Mac OS X only builds with default xcode toolchain. Use $ ./configure 
+--with-hwloc=contrib --with-libffi=contrib CC=clang to configure. gcc installed 
+with brew or port is not supported. We believe this is due to 
+https://gcc.gnu.org/bugzilla/show_bug.cgi?format=multiple&id=60893.
+3. There are known regressions with TBBmalloc 4.4. Please use TBBmalloc 4.3 or 
+earlier. 
+4. The Intel toolchain on Cray platforms requires the gcc compiler in the path 
+(see https://www.nersc.gov/users/software/compilers/intel-fortran-c-and-c/intel-bug-reports/c-11-header-files-appear-missing-on-edison/).
+5. Clang versions prior to 3.6 (3.5.1 or earlier) contain regressions that 
+trigger runtime failures in HPX. 
+6. The --map-by node:pe=1 flag will be incorrectly interpreted when using some 
+versions of OpenMPI, and will spawn #cores HPX-5 worker threads. Use 
+--hpx-threads=1 to force 1 worker thread if necessary.
+7. LULESH induces a performance regression with jemalloc, prefer tbbmalloc for 
+it. When using jemalloc set MALLOC_CONF=lg_dirty_mult:-1 on the command line—this 
+resolves the performance regression but may cause memory exhaustion. Also use 
+hugetlbfs when available.
+8. Remote hpx_lco_get/wait operations do not propagate errors correctly.
+9. User registered signal handlers are overwritten by --hpx-dbg-waitonsig.
+10. hpx_parcel_send and hpx_parcel_retain cannot be used in combination.
+11. HPX-5 does not currently account for dynamic changes in system configuration.  
+Systems that turn cores on and off may cause an unexpected state during startup, 
+which will result in triggering a guarding assert check.
+12. HPX-5 exhibits a regression on aarch64 when compiling with gcc and -fgcse 
+(present in -O2 and greater). The source of this regression is under 
+investigation. Optimized configurations on aarch64 using gcc must explicitly 
+add -fno-gcse to their CXXFLAGS. The clang compiler does not trigger this 
+regression.
+
+General Information
+---------------------
+
+If you plan to use HPX–5, we suggest starting with the latest released
+version (currently HPX–5 v4.1.0) which can be downloaded from
+http://hpx.crest.iu.edu/download. If you would like to work with the
+cutting edge version of HPX–5, we suggest using the the `develop`
+branch at https://gitlab.crest.iu.edu/extreme/hpx. While we try to
+keep the develop branch stable and usable, sometimes new bugs trick
+their way into the code base - be aware!
+
+Documentation for the latest release of HPX–5 (currently v4.1.0) and
+the previous versions can be accessed at
+http://hpx.crest.iu.edu/documentation. The FAQ can be found at
+http://hpx.crest.iu.edu/faqs_and_tutorials.
+
+Reporting bugs
+=================
+
+In any case, if you happen to run into problems we very much encourage and 
+appreciate issue reports through the issue tracker for this Gitlab project 
+(https://gitlab.crest.iu.edu/extreme/hpx/issues).  
+
+Participate in HPX-5
+======================
+
+HPX-5 is published under a liberal open-source license and has an open, 
+active, and thriving developer community. Further information can be found at 
+http://hpx.crest.iu.edu.
+
+More about HPX-5
+--------------------
+
+For more information about HPX-5, including information about the latest 
+release, please check out the main https://hpx.crest.iu.edu/about. If you 
+have questions or comments, the HPX-5 Developer’s Mailing List is a good 
+place to send them.
+
+Subscribe your e-mail address to be notified when new releases of HPX-5 
+are released using the mailing list: HPX-5 Announcements List 
+http://www.crest.iu.edu/mailman/listinfo.cgi/hpx-announce.

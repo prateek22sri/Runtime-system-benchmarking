@@ -1,0 +1,30 @@
+A simple 1d tree code for computing the gravitational potential of a
+set of point masses.
+
+To build the example code one should perform the following steps:
+
+1) run `bootstrap'
+
+2) run `configure'. If your environment is already setup for HPX-5, there
+   should be no need to specify any options for configure.
+
+3) run `make'.
+
+To run the code, in addition to any instructions that are relevant for any
+HPX-5 program, you will need to provide four command line arguments. If you
+forget, or provide too few arguments, the program will remind you what
+needs to be provided.
+
+> ./treetut 1000 10 0.6 10.0
+
+The previous specifies that 1000 particles are to be generated, the tree
+will refine if a node contains more than 10 particles, the critical angle
+for the potential computation (tree traversal) is 0.6 and the particles
+are distributed on an interval from x=0 to x=10.0.
+
+You may need to use your system provided distributed job launcher to run the
+executable `treetut`. As an example, if you compiled 1dtree with mpicc wrapper 
+or built HPX with mpi, use mpirun launcher to run the binary. For example:
+
+mpirun -np 1 ./treetut 1000 10 0.6 10.0
+

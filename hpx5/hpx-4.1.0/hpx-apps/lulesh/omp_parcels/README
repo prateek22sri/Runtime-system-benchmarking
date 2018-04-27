@@ -1,0 +1,9 @@
+This version of lulesh takes the following arguments:
+  * -n <domain> is the number of domains over which to run
+  * -x <points> is the number of points each domain will have
+  * -i <iterations> is the number of iterations to perform
+
+Note that the number of domains must be cubic.
+
+This version of lulesh works best when the number of nodes (not cores) available
+is the same as the number of domains.

@@ -1,0 +1,375 @@
+sssp-sssp.o: sssp.c /usr/include/unistd.h /usr/include/features.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stddef.h \
+ /usr/include/bits/confname.h /usr/include/getopt.h /usr/include/stdlib.h \
+ /usr/include/string.h /usr/include/xlocale.h /usr/include/bits/string.h \
+ /usr/include/bits/string2.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/stdio.h /usr/include/libio.h \
+ /usr/include/_G_config.h /usr/include/wchar.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdarg.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include-fixed/limits.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/inttypes.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/wchar.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdatomic.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/hpx.h \
+ /usr/include/assert.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdbool.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/attributes.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/types.h \
+ /usr/include/ffi.h /usr/include/ffitarget.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/builtins.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/action.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/addr.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/gas.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/lco.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/par.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/parcel.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/process.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/rpc.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/thread.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/runtime.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/time.h \
+ /usr/include/time.h /usr/include/bits/time.h \
+ /N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/topology.h \
+ ../include/pxgl/pxgl.h ../include/pxgl/defs.h ../include/config.h \
+ ../include/pxgl/adjacency_list.h ../include/pxgl/defs.h \
+ ../include/pxgl/edge_list.h ../include/libpxgl/atomics.h \
+ ../include/pxgl/edge_list.h ../include/pxgl/dimacs.h \
+ ../include/pxgl/adjacency_list.h ../include/pxgl/sssp.h \
+ ../include/pxgl/gteps.h ../include/pxgl/statistics.h \
+ ../include/pxgl/termination.h ../generatorhelper/include/prng.h \
+ ../generatorhelper/include/Random123/threefry.h \
+ ../generatorhelper/include/Random123/features/compilerfeatures.h \
+ ../generatorhelper/include/Random123/features/gccfeatures.h \
+ ../generatorhelper/include/Random123/array.h \
+ ../generatorhelper/include/Random123/features/sse.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/x86intrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/ia32intrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/mmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xmmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/mm_malloc.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/emmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/pmmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/tmmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/ammintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/smmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/popcntintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/wmmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/immintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avxintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx2intrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512fintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512erintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512pfintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512cdintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vlintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512bwintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512dqintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vlbwintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vldqintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512ifmaintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512ifmavlintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vbmiintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vbmivlintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/shaintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/lzcntintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/bmiintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/bmi2intrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/fmaintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/f16cintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/rtmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xtestintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/mm3dnow.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/prfchwintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/fma4intrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xopintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/lwpintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/tbmintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/rdseedintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/fxsrintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xsaveintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xsaveoptintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/adxintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/clwbintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/pcommitintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/clflushoptintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xsavesintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xsavecintrin.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/mwaitxintrin.h
+
+/usr/include/unistd.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stddef.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/getopt.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/string.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/bits/string.h:
+
+/usr/include/bits/string2.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/stdio.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdarg.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include-fixed/limits.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/inttypes.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdatomic.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/hpx.h:
+
+/usr/include/assert.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdbool.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/attributes.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/types.h:
+
+/usr/include/ffi.h:
+
+/usr/include/ffitarget.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/builtins.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/action.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/addr.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/gas.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/lco.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/par.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/parcel.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/process.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/rpc.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/thread.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/runtime.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/time.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/time.h:
+
+/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include/hpx/topology.h:
+
+../include/pxgl/pxgl.h:
+
+../include/pxgl/defs.h:
+
+../include/config.h:
+
+../include/pxgl/adjacency_list.h:
+
+../include/pxgl/defs.h:
+
+../include/pxgl/edge_list.h:
+
+../include/libpxgl/atomics.h:
+
+../include/pxgl/edge_list.h:
+
+../include/pxgl/dimacs.h:
+
+../include/pxgl/adjacency_list.h:
+
+../include/pxgl/sssp.h:
+
+../include/pxgl/gteps.h:
+
+../include/pxgl/statistics.h:
+
+../include/pxgl/termination.h:
+
+../generatorhelper/include/prng.h:
+
+../generatorhelper/include/Random123/threefry.h:
+
+../generatorhelper/include/Random123/features/compilerfeatures.h:
+
+../generatorhelper/include/Random123/features/gccfeatures.h:
+
+../generatorhelper/include/Random123/array.h:
+
+../generatorhelper/include/Random123/features/sse.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/x86intrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/ia32intrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/mmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xmmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/mm_malloc.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/emmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/pmmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/tmmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/ammintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/smmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/popcntintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/wmmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/immintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avxintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx2intrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512fintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512erintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512pfintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512cdintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vlintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512bwintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512dqintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vlbwintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vldqintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512ifmaintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512ifmavlintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vbmiintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/avx512vbmivlintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/shaintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/lzcntintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/bmiintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/bmi2intrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/fmaintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/f16cintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/rtmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xtestintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/mm3dnow.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/prfchwintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/fma4intrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xopintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/lwpintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/tbmintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/rdseedintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/fxsrintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xsaveintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xsaveoptintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/adxintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/clwbintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/pcommitintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/clflushoptintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xsavesintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/xsavecintrin.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/mwaitxintrin.h:

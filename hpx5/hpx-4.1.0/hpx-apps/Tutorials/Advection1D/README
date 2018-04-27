@@ -1,0 +1,23 @@
+Advection tutorial
+====================
+
+The problem considered in the tutorial is the one-dimensional advection 
+equation. A detailed tutorial can be found at: 
+http://hpx.crest.iu.edu/tutorials.
+
+To build the example code one should perform the following steps:
+
+1) run `bootstrap'
+
+2) run `configure'. If your environment is already setup for HPX-5, there
+   should be no need to specify any options for configure.
+
+3) run `make'.
+
+Running the code requires nothing on top of what is needed on your system to
+run an HPX-5 application. The advection tutorial codes do not require any
+command-line arguments.
+
+For example:
+> mpirun -np 1 ./advection0
+

@@ -1,0 +1,99 @@
+#!/bin/sh
+
+usage() {
+        cat <<EOF
+Usage:
+  hpx-config <option>
+Options:
+  --help | -h  : Print usage.
+  --version    : Print hpx version.
+  --config     : Print configure options used to build hpx.
+  --prefix     : Print installation directory prefix.
+  --bindir     : Print binary installation directory.
+  --includedir : Print include installation directory.
+  --libdir     : Print library installation directory.
+  --src-root   : Print the source root HPX was built from.
+  --obj-root   : Print the object root used to build HPX.
+  --host-cpu   : Print the host cpu used to configure HPX.
+  --host-os    : Print the host os used to configure HPX. 
+  --cc         : Print compiler used to build hpx.
+  --cflags     : Print compiler flags used to build hpx.
+  --cxx        : Print c++ compiler used to build hpx.
+  --cxxflags   : Print cxx flags used to build HPX.
+  --cppflags   : Print preprocessor flags used to build hpx.
+  --ldflags    : Print the ld flags used to build HPX.
+  --ccasflags  : Print the ccas flags used to build HPX.
+  --libs       : Print libraries hpx was linked against.
+EOF
+}
+
+prefix="/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install"
+exec_prefix="/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install"
+pkg_prefix="/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/lib/pkgconfig"
+
+LIBS=$(PKG_CONFIG_PATH="$pkg_prefix:$PKG_CONFIG_PATH" pkg-config --libs --static hpx)
+
+case "$1" in
+--help | -h)
+        usage
+        exit 0
+        ;;
+--version)
+        echo "4.1.0"
+        echo "Copyright (c) 2013-2017, Trustees of Indiana University."
+        ;;
+--config)
+        echo "--prefix=/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/ CC=cc CXX=CC --enable-mpi PKG_CONFIG_PATH=/opt/cray/rca/1.0.0-2.0502.60530.1.63.gem/lib64/pkgconfig:/opt/cray/alps/5.2.4-2.0502.9774.31.12.gem/lib64/pkgconfig:/opt/cray/xpmem/0.1-2.0502.64982.5.3.gem/lib64/pkgconfig:/opt/cray/gni-headers/4.0-1.0502.10859.7.8.gem/lib64/pkgconfig:/opt/cray/dmapp/7.0.1-1.0502.11080.8.74.gem/lib64/pkgconfig:/opt/cray/pmi/5.0.10-1.0000.11050.179.3.gem/lib64/pkgconfig:/opt/cray/ugni/6.0-1.0502.10863.8.28.gem/lib64/pkgconfig:/opt/cray/udreg/2.3.2-1.0502.10518.2.17.gem/lib64/pkgconfig:/opt/cray/craype/2.5.3/pkg-config:/opt/cray/iobuf/2.0.6/lib/pkgconfig:/opt/cray/atp/2.0.0/lib/pkgconfig"
+        ;;
+--prefix)
+        echo "/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install"
+        ;;
+--bindir)
+        echo "/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/bin"
+        ;;
+--includedir)
+        echo "/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/include"
+        ;;
+--libdir)
+        echo "/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install/lib"
+        ;;
+--src-root)
+        echo "/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx"
+        ;;
+--obj-root)
+        echo "/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx"
+        ;;
+--host-cpu)
+        echo "x86_64"
+        ;;
+--host-os)
+        echo "linux-gnu"
+        ;;
+--cc)
+        echo "cc"
+        ;;
+--cflags)
+        echo "-O3 -g"
+        ;;
+--cxx)
+        echo "CC"
+        ;;
+--cxxflags)
+        echo "-O3 -g -std=gnu++11"
+        ;;
+--cppflags)
+        echo ""
+        ;;
+--ldflags)
+        echo ""
+        ;;
+--ccasflags)
+        echo "-O3 -g"
+        ;;
+--libs)
+        echo "$LIBS"
+        ;;
+*)
+        usage
+        exit 1
+esac

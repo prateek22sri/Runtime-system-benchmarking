@@ -1,0 +1,153 @@
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   ...
+   fun:ipath*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   ...
+   fun:mlx4*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   munmap(offset)
+   ...
+   fun:ipath*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   munmap(offset)
+   ...
+   fun:mlx4*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   munmap(length)
+   ...
+   fun:ipath*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   munmap(length)
+   ...
+   fun:mlx4*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   mmap(offset)
+   ...
+   fun:ipath*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   mmap(offset)
+   ...
+   fun:mlx4*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   mmap(length)
+   ...
+   fun:ipath*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   mmap(length)
+   ...
+   fun:mlx4*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   ...
+   fun:ipath*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   ...
+   fun:mlx4*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value8
+   ...
+   fun:ipath*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value8
+   ...
+   fun:mlx4*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   ...
+   fun:PMPI_Init
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   ...
+   fun:ibv_*
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   ...
+   fun:network_new
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   ...
+   fun:photon_put_with_completion
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value8
+   ...
+   fun:verbs_init
+   fun:_photon_init
+   ...
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   ...
+   fun:verbs_init
+   fun:_photon_init
+   ...
+}

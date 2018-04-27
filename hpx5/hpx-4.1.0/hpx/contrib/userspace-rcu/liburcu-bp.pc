@@ -1,0 +1,11 @@
+prefix=/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Userspace RCU BulletProof
+Description: A userspace RCU (read-copy-update) library, bulletproof version
+Version: 0.9.2
+Requires:
+Libs: -L${libdir} -lurcu-bp
+Cflags: -I${includedir} 

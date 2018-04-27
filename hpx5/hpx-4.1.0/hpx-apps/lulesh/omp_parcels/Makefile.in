@@ -1,0 +1,27 @@
+LIBS    = $(shell pkg-config --libs --static @HPX_PKG@)
+CFLAGS += $(shell pkg-config --cflags @HPX_PKG@)
+CFLAGS += @CFLAGS@
+LDFLAGS += @LDFLAGS@
+
+CC = @CC@
+
+LINKER = $(CC)
+#LINKER  = libtool --mode=link $(CC)
+SRC = $(shell ls *.c)
+OBJ = $(SRC:.c=.o)
+TARGET = luleshparcels
+
+.PHONY: clean help
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(LINKER) $(LDFLAGS) -o $(TARGET) $(OBJ) $(LIBS) -lm
+
+%.o:%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+
+clean:
+	rm -f $(OBJ) $(TARGET) *~
+help:
+	@echo "Usage: ./$(TARGET) [options]"

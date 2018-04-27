@@ -1,0 +1,65 @@
+// =============================================================================
+//  High Performance ParalleX Library (libhpx)
+//
+//  Copyright (c) 2013-2017, Trustees of Indiana University,
+//  All rights reserved.
+//
+//  This software may be modified and distributed under the terms of the BSD
+//  license.  See the COPYING file for details.
+//
+//  This software was created at the Indiana University Center for Research in
+//  Extreme Scale Technologies (CREST).
+// =============================================================================
+
+/// Mapping file for all integral types. Designed for multiple inclusion
+
+#ifndef HPX_PLUS_PLUS_TYPE_MAP
+# define HPX_PLUS_PLUS_TYPE_MAP(...)
+# define _UNDEF_HPX_PLUS_PLUS_TYPE_MAP
+#endif
+
+#include <cstdint>
+
+HPX_PLUS_PLUS_TYPE_MAP(char, HPX_CHAR)
+HPX_PLUS_PLUS_TYPE_MAP(short, HPX_SHORT)
+HPX_PLUS_PLUS_TYPE_MAP(int, HPX_INT)
+HPX_PLUS_PLUS_TYPE_MAP(long, HPX_LONG)
+
+// HPX_PLUS_PLUS_TYPE_MAP(char, HPX_SCHAR)
+// HPX_PLUS_PLUS_TYPE_MAP(short, HPX_SSHORT)
+// HPX_PLUS_PLUS_TYPE_MAP(int, HPX_SINT)
+// HPX_PLUS_PLUS_TYPE_MAP(long, HPX_SLONG)
+
+HPX_PLUS_PLUS_TYPE_MAP(unsigned char, HPX_UCHAR)
+HPX_PLUS_PLUS_TYPE_MAP(unsigned short, HPX_USHORT)
+HPX_PLUS_PLUS_TYPE_MAP(unsigned int, HPX_UINT)
+HPX_PLUS_PLUS_TYPE_MAP(unsigned long, HPX_ULONG)
+
+// HPX_PLUS_PLUS_TYPE_MAP(std::int8_t, HPX_SINT8)
+// HPX_PLUS_PLUS_TYPE_MAP(std::int16_t, HPX_SINT16)
+// HPX_PLUS_PLUS_TYPE_MAP(std::int32_t, HPX_SINT32)
+// HPX_PLUS_PLUS_TYPE_MAP(std::int64_t, HPX_SINT64)
+
+// HPX_PLUS_PLUS_TYPE_MAP(std::uint8_t, HPX_UINT8)
+// HPX_PLUS_PLUS_TYPE_MAP(std::uint16_t, HPX_UINT16)
+// HPX_PLUS_PLUS_TYPE_MAP(std::uint32_t, HPX_UINT32)
+// HPX_PLUS_PLUS_TYPE_MAP(std::uint64_t, HPX_UINT64)
+
+// HPX_PLUS_PLUS_TYPE_MAP(std::size_t, HPX_SIZE_T)
+
+HPX_PLUS_PLUS_TYPE_MAP(float, HPX_FLOAT)
+HPX_PLUS_PLUS_TYPE_MAP(double, HPX_DOUBLE)
+HPX_PLUS_PLUS_TYPE_MAP(long double, HPX_LONGDOUBLE)
+
+#if !defined(__PPC64__)
+#ifdef HAVE_LIBFFI_COMPLEX
+HPX_PLUS_PLUS_TYPE_MAP(_Complex float, HPX_COMPLEX_FLOAT)
+HPX_PLUS_PLUS_TYPE_MAP(_Complex double, HPX_COMPLEX_DOUBLE)
+HPX_PLUS_PLUS_TYPE_MAP(_Complex long double, HPX_COMPLEX_LONGDOUBLE)
+#endif
+#endif
+
+#ifdef _UNDEF_HPX_PLUS_PLUS_TYPE_MAP
+# undef _UNDEF_HPX_PLUS_PLUS_TYPE_MAP
+# undef HPX_PLUS_PLUS_TYPE_MAP
+#endif

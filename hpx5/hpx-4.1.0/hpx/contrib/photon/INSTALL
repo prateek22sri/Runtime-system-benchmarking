@@ -1,0 +1,45 @@
+=== Building on Bravo ===
+
+MPICH 3.0.4 and OpenMPI 1.6.3 are in /home/kissel/
+
+To use the XSP forwarder code, the build process needs libxsp_client, but
+the photon module in XSP also needs Photon dependecies.
+
+Solution: build XSP without photon first to get libxsp_client (or
+install libxsp_client from some other source, e.g. RPM).
+
+Example build assuming --prefix=/home/kissel/<package>
+
+--XSP--
+ > git clone git@gitlab.crest.iu.edu:damsl/xsp.git
+ > ./autogen
+ > ./configure --prefix=/home/kissel/xspd
+ > make && make install
+
+--Photon--
+ > git clone git@gitlab.crest.iu.edu:damsl/photon.git
+ > git checkout request-track
+ > ./autogen
+ > ./configure --with-mpi-include-path=/home/kissel/openmpi-1.6.3/include/ \
+  --with-mpi-ld-path=/home/kissel/openmpi-1.6.3/lib/ \
+  --with-xsp-include-path=/home/kissel/xspd/include \
+  --with-xsp-ld-path=/home/kissel/xspd/lib --prefix=/home/kissel/Photon
+ > make
+ > make install
+
+--Back to XSP--
+ > ./configure --prefix=/home/kissel/xspd --with-photon=/home/kissel/Photon
+ > make && make install
+
+=== Sample config sections for XSP photon/forwarder ===
+
+   forwarder: {
+       eid = "b001.bravo.futuregrid.org/5006";
+       pool_size = 20000;
+       alloc_size = 100;
+       load_dir = "/var/forwarder";
+   };         
+
+   photon: {
+       maxclients: 8;
+   };

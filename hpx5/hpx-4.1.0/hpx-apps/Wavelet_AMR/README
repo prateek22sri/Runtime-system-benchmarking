@@ -1,0 +1,61 @@
+This wavelet example solves the Euler equations for a blast wave in 2-D.
+
+Maintainer:  
+Matthew Anderson (andersmw@indiana.edu)
+
+Developers:
+Matthew Anderson (andersmw@indiana.edu)
+Jackson DeBuhr (jdebuhr@indiana.edu)
+Bo Zhang (zhang416@indiana.edu)
+David Neilsen (david.neilsen@physics.byu.edu)
+
+To build:  Ensure that the HPX-5 package is installed, then type make.
+For input and output, support for two optional external libraries is included:
+silo (https://silo.llnl.gov/)
+rnpl (laplace.physics.ubc.ca/Doc/rnpletal/)
+
+To run:  mpirun -np <number of nodes> ./hawaii
+
+To use silo, add -DSILO to the CFLAGS.
+To use rnpl, add -RNPL to the CFLAGS.
+
+An example parameter file is provided (idblast)
+
+The wavelet example comes in three flavors: serial, cilk, and hpx.  For the cilk and hpx flavors,
+the serial version is also present in the source code to aid comparison.  Here is an example
+from the cilk flavor, hawaii-integr.c: 
+
+#ifdef CILK
+    cilk_for (int i = 0; i < npts_in_array; i++) {
+#else
+    for (int i = 0; i < npts_in_array; i++) {
+#endif
+      coll_point_t *point = &coll_points->array[i];
+      rk4_helper(point, dt);
+      if (point->level == 1 && point->status[CURRENT_STATUS] == essential)
+        integrator_helper(point, dt, rk4_helper);
+    }
+  }
+
+Here is a similar example from the hpx flavor, hawaii-integr.c:
+
+#ifdef HPX
+    complete = hpx_lco_and_new(npts_in_array);
+    for (int i = 0; i < npts_in_array; i++) {
+      ATI ld;
+      ld.gen = gen;
+      ld.dt = dt;
+      hpx_addr_t point = hpx_addr_add(hpx_coll_points.array,i*sizeof(coll_point_t),sizeof(coll_point_t));
+      hpx_call(point,_apply_time_b,complete,&ld,sizeof(ld));
+    }
+    hpx_lco_wait(complete);
+    hpx_lco_delete(complete, HPX_NULL);
+#else
+    void(*rk4_helper)(coll_point_t *, const double) = rk4_helpers[gen];
+    for (int i = 0; i < npts_in_array; i++) {
+      coll_point_t *point = &coll_points->array[i];
+      rk4_helper(point, dt);
+      if (point->level == 1 && point->status[CURRENT_STATUS] == essential)
+        integrator_helper(point, dt, rk4_helper);
+    }
+#endif

@@ -1,0 +1,14 @@
+Welcome to the HPX-5 runtime system library! 
+
+The HPX–5 distribution contains two top-level directories.
+
+/hpx
+This contains the HPX–5 interface and runtime library implementation, along with
+ examples, the test suite, and third-party dependencies. The project installs 
+the HPX–5 headers and the libhpx.{a,so} runtime library, along with built 
+dependencies and an hpx.pc file for use with pkg-config for external projects.
+
+/hpx-apps
+This contains example applications designed to depend on an installed instance 
+of HPX–5, and should serve as a usage model. In particular, it includes a 
+tutorial as well as the Lulesh, Wavelet-AMR, HPCG, CoMD, and SSSP applications.

@@ -1,0 +1,33 @@
+graph500_edge_list_generator_action generating 2097152 edges with thread chunk 8192
+Waiting for completion LCO.  Time took to start local read loops: 0.002559s
+Finished waiting for edge list completion.  Time waiting: 0.361618s
+Edge List: #v = 65536, #e = 2097152
+Count the number of edges per source vertex
+Time elapsed in the loop: 0.000751
+Time elapsed waiting for completion: 0.150083
+Allocate the adjacency list according to the count of edges per vertex
+Time elapsed in the loop: 0.000040
+Time elapsed waiting for completion: 0.006597
+Convert edges to adjacencies
+Time elapsed in the loop: 0.000968
+Time elapsed waiting for completion: 0.179076
+# priority  queues: 1
+Calling SSSP (Distributed Control).
+Finished problem 0 in 3.9733041 seconds (csum = 0).
+Calling SSSP (Distributed Control).
+Finished problem 1 in 5.9796893 seconds (csum = 0).
+
+TEPS statistics:
+min_TEPS: 3.50708857767661335e+05
+firstquartile_TEPS: 3.94982908463236119e+05
+median_TEPS: 2.63902530274980236e+05
+thirdquartile_TEPS: 2.31778780367488892e-310
+max_TEPS: 5.27805060549960472e+05
+harmonic_mean_TEPS: 4.21406891911173938e+05
+harmonic_stddev_TEPS: 1.20137125033569027e+05
+Application 15548248 resources: utime ~2082s, stime ~100s, Rss ~213592, inblocks ~21679, outblocks ~10
+Job Cleanup ran on Fri Apr 20 14:23:00 EDT 2018
+===============================
+submit_args  : 	 submit_args = run128.sh
+NIDS         : 	 9-10,21,23
+NID Placement: 	 9/32 10/32 21/32 23/32 

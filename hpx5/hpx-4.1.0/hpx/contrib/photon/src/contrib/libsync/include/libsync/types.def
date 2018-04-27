@@ -1,0 +1,62 @@
+// -*- C -*- ===================================================================
+//  High Performance ParalleX Library (libhpx)
+//
+//  Copyright (c) 2013-2016, Trustees of Indiana University,
+//  All rights reserved.
+//
+//  This software may be modified and distributed under the terms of the BSD
+//  license.  See the COPYING file for details.
+//
+//  This software was created at the Indiana University Center for Research in
+//  Extreme Scale Technologies (CREST).
+// =============================================================================
+
+#ifndef SYNC_FLOAT_TY
+# define SYNC_FLOAT_TY(T, s)
+# define _UNDEF_SYNC_FLOAT_TY
+#endif
+
+#ifndef SYNC_PTR_TY
+# define SYNC_PTR_TY SYNC_INT_TY
+# define _UNDEF_SYNC_FLOAT_TY
+#endif
+
+#if !defined(__INTEL_COMPILER) && !defined(_CRAYC) && !defined(__ARMEL__)
+# define _HAVE_INT128
+#endif
+
+SYNC_INT_TY(int8_t,      i8)
+SYNC_INT_TY(int16_t,     i16)
+SYNC_INT_TY(int32_t,     i32)
+SYNC_INT_TY(int64_t,     i64)
+#ifdef _HAVE_INT128
+SYNC_INT_TY(__int128_t,  i128)
+#endif
+SYNC_INT_TY(intptr_t,    ip)
+SYNC_INT_TY(uint8_t,     ui8)
+SYNC_INT_TY(uint16_t,    ui16)
+SYNC_INT_TY(uint32_t,    ui32)
+SYNC_INT_TY(uint64_t,    ui64)
+#ifdef _HAVE_INT128
+SYNC_INT_TY(__uint128_t, ui128)
+#endif
+SYNC_INT_TY(uintptr_t,   uip)
+
+SYNC_PTR_TY(void*,       p)
+
+SYNC_FLOAT_TY(float,     f)
+SYNC_FLOAT_TY(double,    d)
+
+#ifdef _HAVE_INT128
+# undef _HAVE_INT128
+#endif
+
+#ifdef _UNDEF_SYNC_FLOAT_TY
+# undef _UNDEF_SYNC_FLOAT_TY
+# undef SYNC_PTR_TY
+#endif
+
+#ifdef _UNDEF_SYNC_FLOAT_TY
+# undef _UNDEF_SYNC_FLOAT_TY
+# undef SYNC_FLOAT_TY
+#endif

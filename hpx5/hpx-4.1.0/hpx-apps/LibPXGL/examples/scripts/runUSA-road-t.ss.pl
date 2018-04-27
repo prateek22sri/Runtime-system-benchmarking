@@ -1,0 +1,85 @@
+# ============================================================================
+#  runUSA-road-t.ss.pl
+# ============================================================================
+
+#  Author(s)       (c) 2006 Camil Demetrescu, Andrew Goldberg
+#  License:        See the end of this file for license information
+#  Created:        Feb 15, 2006
+
+#  Last changed:   $Date: 2006/10/30 08:09:39 $
+#  Changed by:     $Author: demetres $
+#  Revision:       $Revision: 1.3 $
+
+#  9th DIMACS Implementation Challenge: Shortest Paths
+#  http://www.dis.uniroma1.it/~challenge9
+
+#  USA-road-t family experiment driver
+#  runs the ss solver on instances in the USA-road-t family
+
+#  Usage: > perl runUSA-road-t.ss.pl
+# ============================================================================
+
+# param setup:
+$RESFILE   = "../results/USA-road-t.ss.res";
+$PREFIX    = "$ARGV[0]/inputs/USA-road-t/USA-road-t";
+$SOLVER    = "../sssp";
+
+$GRAPH     = "$PREFIX.%s.gr";
+$AUX       = "$PREFIX.%s.ss";
+
+# header:
+print "\n* 9th DIMACS Implementation Challenge: Shortest Paths\n";
+print   "* http://www.dis.uniroma1.it/~challenge9\n";
+print   "* USA-road-t family ss core experiment\n";
+
+# cleanup result file
+open FILE, ">$RESFILE" or die "Cannot open $RESFILE for write :$!";
+close FILE;
+
+# generation subroutine
+sub DORUN {
+
+    # graph instance (e.g., CTR, BAY, etc.)
+    $EXT = $_[0];
+
+    $graphname = sprintf $GRAPH, $EXT;
+    $auxname   = sprintf $AUX, $EXT;
+
+    print "\n* Running ss solver on graph $graphname\n";
+
+    # run experiment and collect stdout
+    $out = `mpirun -np 1 $SOLVER $graphname $auxname $RESFILE`;
+}
+
+# run benchmark code
+&DORUN("NY");
+&DORUN("BAY");
+&DORUN("COL");
+&DORUN("FLA");
+&DORUN("NW");
+&DORUN("NE");
+&DORUN("CAL");
+&DORUN("LKS");
+&DORUN("E");
+&DORUN("W");
+&DORUN("CTR");
+
+
+# ============================================================================
+# Copyright (C) 2006 Camil Demetrescu, Andrew Goldberg
+
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+
+# You should have received a copy of the GNU General Public
+# License along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# ============================================================================
+

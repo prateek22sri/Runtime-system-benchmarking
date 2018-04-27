@@ -1,0 +1,128 @@
+# Installation Instructions
+
+## Configuring
+
+HPX-5 is designed to use standard autotools configuration techniques. HPX-5
+releases come bootstrapped, *there is no need to bootstrap in this case.* If you
+have a development release you will need to follow the bootstrapping
+documentation at the end of this guide.
+
+Building HPX-5 without a network (the default) allows you to run
+HPX-applications on a single node. For distributed execution either MPI or
+Photon networking should be enabled, which is detailed in next section.
+
+The HPX-5 configuration infrastructure supports the use of ‘pkg-config’ to look
+for installed packages. In particular, if your compilation environment requires
+explicit paths to MPI, you should compile with --enable-mpi --with-mpi={ompi,
+mvapich2,etc}.
+
+See ‘./configure --help’ for further details.
+
+## Configuring with MPI
+
+The `--enable-mpi` configuration flag will add support for `mpirun` and the ISIR
+network. By default, HPX–5 will try and see if `mpi.h` and `libmpi.so` are
+available with no additional flags (e.g., for `CC=mpicc` or on Cray `CC=cc`).
+
+If you want to specify which MPI should be used or the build system cannot find
+MPI, you may specify the .pc file you may need to use the `--with-mpi=pkg`
+option. The pkg parameter can be either the prefix for the .pc file (ompi,
+mpich, etc.) or a complete path to the .pc file.
+
+```
+$ ./configure --prefix=/path/to/install --enable-mpi
+```
+
+## Configuring with Photon
+
+The Photon network library is included in the HPX–5 release.  To configure HPX–5
+with Photon use the option `--enable-photon`. HPX–5 can also use a
+system-installed or pkg-config version of Photon. This can be controlled using
+`--with-photon=system` or `--with-photon=pkg`, respectively. Note that HPX–5
+does not provide its own distributed job launcher, so it is necessary to use
+either the `--enable-pmi` or `--enable-mpi` option in addition to
+`--enable-photon` in order to build support for `mpirun` or `aprun`.
+
+```
+$ ./configure --prefix=/path/to/install --enable-mpi --enable-photon
+```
+
+## To complete the build and install use:
+make
+make install
+
+## Running the test-suite
+
+To run the included testsuite set TESTS_CMD=<command> during configuration.
+
+```
+$ ./configure TESTS_CMD="mpirun -np 2 --map-by node:PE=16" --enable-mpi
+$ make check
+```
+
+## CRAY/uGNI
+
+HPX-5 supports either `PrgEnv-intel` or `PrgEnv-gnu`.
+
+HPX-5 can be built to support fully `-static` linking, however we recommend that
+you enable dynamic linking by setting `CRAYPE_LINK_TYPE=dynamic` in your
+environment.
+
+HPX-5 requires the explicit use of the `cc` wrapper on Cray playtforms.
+
+In addition, the --with-hugetlbfs option causes the HPX–5 heap 
+to be mapped with huge pages, which is necessary for larger heaps on some 
+Cray Gemini machines. The hugepages modules provide the environment necessary 
+for compilation. Huge page support should work where available, but we have 
+seen no performance benefits to using it at this point.
+
+```
+$ ./configure --prefix=/path/to/install/ CC=cc
+```
+We recommend that users of the Cray Intel module also `module load gcc`, as the
+intel tools try to provide compatibility with the gnu toolchain that it sees in
+the path, and the default gnu toolchain in the CLE is ancient. See
+https://www.nersc.gov/users/software/compilers/intel-fortran-c-and-c/intel-bug-reports/c-11-header-files-appear-missing-on-edison/
+for more details.
+
+### MPI Details
+
+If you have MPICH loaded, you need to specify the pkg-config package manually.
+
+```
+‘$ ./configure --prefix=/path/to/install --enable-mpi --with-mpi=mpich 
+   CC=cc’
+```
+
+### Photon Details
+
+Photon requires an explicit `--enable-ugni --disable-libfabric` configuration argument.
+
+```
+$ ./configure --prefix=/path/to/install/ CC=cc --enable-photon 
+  --enable-pmi PHOTON_CARGS="--enable-ugni --disable-libfabric"
+```
+
+## Bootstrapping
+
+HPX-5 provides a bootstrap script in its build. In the HPX-5 directory run the
+bootstrap script.
+
+```
+$ ./bootstrap
+```
+
+Bootstrap is a bash script that generate the initialization required to create 
+a configure script when using GNU autotools. In addition, it will download and
+unpack some dependencies to the `contrib` folder.
+
+To bootstrap you would need the latest version of autotools. There is a script 
+to install the latest tools in scripts folder.
+
+GNU Make	3.81+	Makefile/build processor
+GNU Autoconf	2.6.9	Configuration script builder 
+GNU Automake	1.15	Aclocal macro generator 
+GNU M4	        1.4.17	Macro processor for configuration
+Libtool	        2.4.6	Shared library manager 
+Pkg-config	0.26+   Returns information about installed libraries	
+

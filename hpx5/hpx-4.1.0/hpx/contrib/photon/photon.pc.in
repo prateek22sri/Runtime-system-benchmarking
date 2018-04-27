@@ -1,0 +1,14 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: photon
+Description: Photon.
+URL: https://gitlab.crest.iu.edu/damsl/photon
+Version: @VERSION@
+Requires: @PHOTON_PC_REQUIRES_PKGS@
+Cflags: -I${includedir}
+Libs: -L${libdir} -lphoton @PHOTON_PC_PUBLIC_LIBS@
+Libs.private: @PHOTON_PC_PRIVATE_LIBS@ 
+Requires.private: @PHOTON_PC_PRIVATE_PKGS@

@@ -1,0 +1,12 @@
+prefix=/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install
+exec_prefix=/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+install_suffix=
+
+Name: jemalloc
+Description: A general purpose malloc(3) implementation that emphasizes fragmentation avoidance and scalable concurrency support.
+URL: http://jemalloc.net/
+Version: 4.5.0-0-g04380e79f1e2428bd0ad000bbc6e3d2dfc6b66a5
+Cflags: -I${includedir}
+Libs: -L${libdir} -ljemalloc${install_suffix}

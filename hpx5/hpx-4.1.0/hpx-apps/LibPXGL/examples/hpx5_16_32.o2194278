@@ -1,0 +1,24 @@
+graph500_edge_list_generator_action generating 2097152 edges with thread chunk 32768
+Waiting for completion LCO.  Time took to start local read loops: 0.001914s
+Finished waiting for edge list completion.  Time waiting: 0.209586s
+Edge List: #v = 65536, #e = 2097152
+Count the number of edges per source vertex
+Time elapsed in the loop: 0.000140
+Time elapsed waiting for completion: 0.223323
+Allocate the adjacency list according to the count of edges per vertex
+Time elapsed in the loop: 0.000010
+Time elapsed waiting for completion: 0.011007
+Convert edges to adjacencies
+Time elapsed in the loop: 0.000334
+Time elapsed waiting for completion: 0.316329
+# priority  queues: 1
+Calling SSSP (Distributed Control).
+[NID 00009] 2018-04-20 14:24:45 Apid 15548250: initiated application termination
+[NID 00009] 2018-04-20 14:24:46 Apid 15548250: OOM killer terminated this process.
+Application 15548250 exit signals: Killed
+Application 15548250 resources: utime ~0s, stime ~2s, Rss ~5136, inblocks ~1123, outblocks ~2
+Job Cleanup ran on Fri Apr 20 14:24:46 EDT 2018
+===============================
+submit_args  : 	 submit_args = run32.sh
+NIDS         : 	 9
+NID Placement: 	 9/32 

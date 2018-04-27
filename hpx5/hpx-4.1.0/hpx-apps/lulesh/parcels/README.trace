@@ -1,0 +1,33 @@
+Application-level tracing can be enabled with --enable-tracing. This outputs a
+large number of trace points resulting from `foreach domain, foreach iteration,
+foreach event, rdtsc`.
+
+The scripts subdirectory contains some scripts for dealing with the trace
+data. The 'trace.awk' file will dump the basic timing information to stderr and
+convert the trace points to a csv output.
+
+The 'trace.py' is a pandas python-based module containing some helper functions
+for interpreting the csv.
+
+The `trace_summary.py` file reads the csv from stdin and uses 'trace.py' to
+output a summary. An example use of the `trace_summary.py` script is given
+below.
+
+$ python ./scripts/trace_summary.py -h
+usage: trace_summary.py [-h] [--width WIDTH]
+                        [--field {absolute,offset,relative}]
+
+Summarize lulesh trace output.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --width WIDTH         width of output terminal
+  --field {absolute,offset,relative}
+                        list of fields to summarize
+
+$ aprun -n 16 -N 1 -d 32 ./luleshparcels -n 512 -x 48 -i 50 --hpx-threads=32 | \
+     awk -f ~/hpx-apps/lulesh/parcels/scripts/trace.awk | \
+     python ~/hpx-apps/lulesh/parcels/scripts/trace_summary.py --width=160
+     --field offset --field relative
+
+

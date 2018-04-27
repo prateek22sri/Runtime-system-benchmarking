@@ -1,0 +1,14 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: @PACKAGE_NAME@
+Description: The HPX-5 C++ API.
+URL: https://gitlab.crest.iu.edu/extreme/hpx
+Version: @PACKAGE_VERSION@
+Requires: hpx
+# Cflags: -I${includedir} @HPX_PC_CFLAGS@
+# Libs: -L${libdir} -lhpx @HPX_PC_PUBLIC_LIBS@
+# Libs.private: @HPX_PC_PRIVATE_LIBS@
+# Requires.private: @HPX_PC_PRIVATE_PKGS@

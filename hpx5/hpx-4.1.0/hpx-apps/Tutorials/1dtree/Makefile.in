@@ -1,0 +1,21 @@
+CXX       = @CXX@
+CXXFLAGS  = @CXXFLAGS@
+
+LIBS    = $(shell pkg-config --libs --static hpx)
+CFLAGS += $(shell pkg-config --cflags hpx)
+LDFLAGS += @LDFLAGS@
+
+SRC = $(shell ls *.cc)
+OBJ = $(SRC:.cc=.o)
+EXEC = treetut
+
+all: $(EXEC)
+
+$(EXEC): $(OBJ)
+	$(CXX) $(LDFLAGS) $(CFLAGS) -o $(EXEC) $(OBJ) $(LIBS)
+
+%.o: %.cc
+	$(CXX) $(LDFLAGS) $(CFLAGS) $(CXXFLAGS) -c $< -o $@ $(LIBS)
+
+clean:
+	rm -rf $(EXEC) $(OBJ) *~

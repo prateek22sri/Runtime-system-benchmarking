@@ -1,0 +1,3 @@
+x86_64/libarch_la-asm.lo: x86_64/asm.S x86_64/../common/asm_macros.h
+
+x86_64/../common/asm_macros.h:

@@ -1,0 +1,165 @@
+INSTALL
+-------
+
+The only prerequisite for building LibPXGL is that hpx.pc from an HPX-5 installation be
+available in PKG_CONFIG_PATH environment variable, along with autotools for configuration.
+
+Steps:
+1)export PKG_CONFIG_PATH=path_to_hpx_lib_pkgconfig_folder:$PKG_CONFIG_PATH
+2)./bootstrap
+3) ./configure
+4) make
+
+That's it! If you are running on CRAY machines, execute the following command
+for photon uGNI backend:
+1)./bootstrap
+2)./configure PHOTON_CARGS="--enable-ugni"
+3)make
+
+
+The example executable, sssp, is available in the examples directory.
+
+RUN
+---
+
+Here are the options specific to sssp (in addition to runtime options):
+
+Usage: sssp [options] <graph-file> <problem-file>
+        -a, instead resetting adj list between the runs, reallocate it
+        -b, do not compute checksum (for speed up of correct tests)
+        -c, use chaotic algorithm
+        -d, use distributed control
+	-e, run the KLA algorithm
+        -f, frequency for distributed control
+        -g, use groph500 generator with scale parameter
+        -h, this help display
+        -k, use and-lco-based termination detection
+        -l, number of queues for distributed control (does not work with DC1)
+        -p, use process-based termination detection
+        -q, limit time for SSSP executions in seconds
+        -s, nuber of problems to run
+        -t, queue size threshold for chatoic relaxation
+        -u, use the DC1 implementation of distributed control
+        -y, yield count
+	-z, use delta stepping (with chaotic or DC), specify delta parameter
+
+The intput files are in 9th DIMACS Challenge
+(http://www.dis.uniroma1.it/challenge9/download.shtml) format.  A couple of
+example files are provided under the examples/inputs directory.  The -g option
+generates Graph 500 graphs, and input files should not be provided when using
+that option.
+
+The options controlling algorithm choice are -c, -d, -e, -u, and -z.  The
+simplest way to run sssp is:
+
+./sssp -g 5
+
+If you compiled with MPI or Photon support, you may need to use a launcher such
+as "mpirun".
+
+###########################################################
+Detailed instruction to run different algorithms for SSSP:
+###########################################################
+
+1. Using Graph500 generator to generate the graph :
+---------------------------------------------------
+
+Graph500 generator won't need any file as input (graph and sources will be
+generated according to user spec given as command line option). To run
+algorithms at scale, message coalescing can be enabled. To achieve that use
+--hpx-coalescing-buffersize=x  as a command line option, where x is an integer.
+In the following,  we give an example for using this command line option for
+delta-stepping algorithm.
+
+we have to use '-g scale' where scale specifies the size of the graph we want
+to generate with 2^scale vertices and on average (2^scale * 16) edges. We also
+have to use '-s num_sources' where num_sources stands for how many sources we
+want to run the algorithm. With this option graph500 generator will sample the
+graph to get 'num_source' number of sources as problem instances.
+
+a)To use delta stepping algorithm along with Graph500 generator, we have to
+use option '-z delta_size' where delta_size is the incremental size of the
+range of distance each bucket (1,2,3,4 etc)
+For example with 2 nodes and 16 cores on each node we run sssp with the
+folowing command with 16 threads per locality:
+
+mpirun --map-by node:PE=16 -n 2 ./sssp -g 8 -s 4  -q 180 -c -z 2
+--hpx-network=pwc
+
+To use coalescing, you can use the follwing command instead:
+mpirun --map-by node:PE=16 -n 2 ./sssp -g 8 -s 4  -q 180 -c -z 2
+--hpx-network=pwc --hpx-coalescing-buffersize=30000
+
+on cray:
+aprun -n 2 -N 1 -b -d 24 ./sssp -g 8 -s 4  -q 180 -c -z 2 --hpx-network=pwc
+
+where,
+-g 8 specifies that we are generating a graph with 2^8 vertices and (2^8 * 16)
+edges
+-s 4 specifies that we will run our algorithms for 4 problem instances
+-q 180 specifies time limit of 180 seconds
+-z 2 specifies that we are running delta-stepping algorithm (z) for sssp with
+delta size 2.
+
+Note: Adjust the -g for instance 14 on 2 nodes, keep increasing the -g
+parameter with delta-stepping. (Not tested beyond scale 20).
+
+b)Running with distributed control algorithm for SSSP:
+
+mpirun --map-by node:PE=16 -n 2 ./sssp -g 8 -s 4  -q 180  -d
+--hpx-network=pwc
+on cray:
+aprun -n 2 -N 1 -b -d 24 ./sssp -g 8 -s 4  -q 180  -d --hpx-network=pwc
+
+-d option specifies that we are solving sssp with distributed control
+ algorithm.
+All other options are explained previously.
+
+c)Running with Chaotic algorithm for SSSP:
+
+mpirun --map-by node:PE=16 -n 2 ./sssp -g 8 -s 4  -q 180  -c
+--hpx-network=pwc
+on cray
+aprun -n 2 -N 1 -b -d 24 ./sssp -g 8 -s 4  -q 180  -c --hpx-network=pwc
+
+-c specifies that we are solving sssp with chaotic algorithm
+
+chaotic algorithm will take larger execution time.
+
+d) To run K-level asynchronous algorithm:
+mpirun --map-by node:PE=16 -n 2 ./sssp -g 8 -s 4   -c -e 2 --hpx-network=pwc
+on cray
+aprun -n 2 -N 1 -b -d 24 ./sssp -g 8 -s 4   -c -e 2 --hpx-network=pwc
+
+where -e 2 specify the 'k'-level is 2. We can change it to adjust for best
+performance
+
+All the algorithms can use isir or pwc network.
+
+If request descriptor has exhausted, then adjust --hpx-isir-sendlimit from
+80-160
+
+
+2. Using DIMACS (9th DIMACS Implementation Challenge - Shortest Paths:
+http://www.dis.uniroma1.it/challenge9/download.shtml) as input graph and
+problem instances:
+---------------------------------------------------
+
+In the following, I am assuming that my graph files are in Random4-n directory
+relative to sssp execuable.
+
+a)Using distributed control:
+
+mpirun --map-by node:PE=16 -n 2 ./sssp -q 30  -d -f 150 --hpx-network=pwc
+./Random4-n/Random4-n.10.0.gr  ./Random4-n/Random4-n.10.0.ss
+where -f is a parameter for distributed control. Here we specified f to work
+with the value 150. We can also specify this parameter when running with
+graph500 generator.
+
+b)Using delta-stepping:
+mpirun --map-by node:PE=16 -n 2 ./sssp -q 30  -c -z 2 --hpx-network=pwc
+./Random4-n/Random4-n.10.0.gr  ./Random4-n/Random4-n.10.0.ss
+
+c)Using chaotic relaxation:
+mpirun --map-by node:PE=16 -n 2 ./sssp -q 30  -c --hpx-network=pwc
+./Random4-n/Random4-n.10.0.gr  ./Random4-n/Random4-n.10.0.ss

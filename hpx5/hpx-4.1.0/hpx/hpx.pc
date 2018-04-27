@@ -1,0 +1,14 @@
+prefix=/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install
+exec_prefix=/N/u/pratsriv/BigRed2/hpx-4.1.0/hpx-install
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: hpx-5
+Description: The HPX-5 runtime system.
+URL: https://gitlab.crest.iu.edu/extreme/hpx
+Version: 4.1.0
+Requires:  liburcu-qsbr liburcu-cds jemalloc 
+Cflags: -I${includedir}  -D_POSIX_C_SOURCE=200809L
+Libs: -L${libdir} -lhpx  -lrt -lffi -lstdc++ -Wl,-rpath,${libdir}    -lm   -lpciaccess  -lm -lcityhash
+Libs.private: -Wl,-rpath,${libdir}    -lm   -lpciaccess  -lm -lcityhash
+Requires.private: 

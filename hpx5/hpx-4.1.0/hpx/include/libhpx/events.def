@@ -1,0 +1,232 @@
+// -*- C -*- ===================================================================
+//  High Performance ParalleX Library (libhpx)
+//
+//  Copyright (c) 2013-2017, Trustees of Indiana University,
+//  All rights reserved.
+//
+//  This software may be modified and distributed under the terms of the BSD
+//  license.  See the COPYING file for details.
+//
+//  This software was created at the Indiana University Center for Research in
+//  Extreme Scale Technologies (CREST).
+// =============================================================================
+
+/// Standard declarative trace events list, designed for multiple inclusion. Before
+/// including this file #define the LIBHPX_EVENT() macro.
+
+/// LIBHPX_EVENT(class, event, args1, ..., args5)
+///
+/// This generic macro can be used to create expansions for all of the macros in
+/// this file.
+///
+/// @param     class The trace class.
+/// @param     event The trace event ID.
+/// @param      arg1 The first argument.
+/// @param     name1 Name of first argument.
+/// @param      arg2 The second argument.
+/// @param     name2 Name of second argument.
+/// @param      arg3 The third argument.
+/// @param     name3 Name of third argument.
+/// @param      arg4 The fourth argument.
+/// @param     name4 Name of fourth argument.
+/// @param      arg5 The fifth argument.
+/// @param     name5 Name of fifth argument.
+
+/// Parcel events
+/// Parcel events mark important interactions between HPX and parcels, including
+/// the creation of parcels, sending and receiving of parcels, running,
+/// terminating (ending), suspending and resuming, and resending of parcels.
+/// @{
+LIBHPX_EVENT(PARCEL, CREATE,
+             uint64_t, id,
+             hpx_action_t, action,
+             size_t, size,
+             uint64_t, parent_id)
+LIBHPX_EVENT(PARCEL, SEND,
+             uint64_t, id,
+             hpx_action_t, action,
+             size_t, size,
+             hpx_addr_t, src_addr,
+             hpx_addr_t, target)
+LIBHPX_EVENT(PARCEL, RECV,
+             uint64_t, id,
+             hpx_action_t, action,
+             size_t, size,
+             int, src_locality,
+             hpx_addr_t, target)
+LIBHPX_EVENT(PARCEL, RUN,
+             uint64_t, id,
+             hpx_action_t, action,
+             size_t, size)
+LIBHPX_EVENT(PARCEL, END,
+             uint64_t, id,
+             hpx_action_t, action)
+LIBHPX_EVENT(PARCEL, SUSPEND,
+             uint64_t, id,
+             hpx_action_t, action)
+LIBHPX_EVENT(PARCEL, RESUME,
+             uint64_t, id,
+             hpx_action_t, action)
+LIBHPX_EVENT(PARCEL, RESEND,
+             uint64_t, id,
+             hpx_action_t, action,
+             size_t, size,
+             hpx_addr_t, target)
+LIBHPX_EVENT(PARCEL, DELETE,
+             uint64_t, id,
+             hpx_action_t, action)
+/// @}
+
+/// Network events
+/// Network events include when the scheduler handles network probing and 
+/// whenever PWC send/receive operations occur.
+/// @{
+LIBHPX_EVENT(NETWORK, SEND)
+LIBHPX_EVENT(NETWORK, RECV)
+LIBHPX_EVENT(NETWORK, PROBE_BEGIN)
+LIBHPX_EVENT(NETWORK, PROBE_END)
+LIBHPX_EVENT(NETWORK, PROGRESS_BEGIN)
+LIBHPX_EVENT(NETWORK, PROGRESS_END)
+/// @}
+
+/// Scheduler events
+/// Scheduler events mark when the scheduler is entered or exited as well as
+/// when events affecting the LIFO queue occur.
+/// @{
+LIBHPX_EVENT(SCHED, WQSIZE,
+             uint64_t, workqueue_size)
+LIBHPX_EVENT(SCHED, PUSH_LIFO,
+             uint64_t, id)
+LIBHPX_EVENT(SCHED, POP_LIFO,
+             uint64_t, id)
+LIBHPX_EVENT(SCHED, STEAL,
+             uint64_t, id,
+             int, victim)
+LIBHPX_EVENT(SCHED, BEGIN)
+LIBHPX_EVENT(SCHED, END,
+             uint64_t, source,
+             uint64_t, spins)
+LIBHPX_EVENT(SCHED, YIELD)
+LIBHPX_EVENT(SCHED, MAIL,
+             uint64_t, id)
+/// @}
+
+/// LCO events
+/// LCO events mark when important lco procedures occur, such as the
+/// initialization, deletion, setting, resetting, or triggering of the LCO
+/// occurs, and also whenever the LCO is waited on or has a parcel attached to 
+/// it.
+/// @{
+LIBHPX_EVENT(LCO, INIT,
+             uintptr_t, addr,
+             uint64_t, state)
+LIBHPX_EVENT(LCO, DELETE,
+             uintptr_t, addr,
+             uint64_t, state)
+LIBHPX_EVENT(LCO, SET,
+             uintptr_t, addr,
+             uint64_t, state)
+LIBHPX_EVENT(LCO, RESET,
+             uintptr_t, addr,
+             uint64_t, state)
+LIBHPX_EVENT(LCO, ATTACH_PARCEL,
+             uintptr_t, addr,
+             uint64_t, state)
+LIBHPX_EVENT(LCO, WAIT,
+             uintptr_t, addr,
+             uint64_t, state)
+LIBHPX_EVENT(LCO, TRIGGER,
+             uintptr_t, addr,
+             uint64_t, state)
+/// @}
+
+/// Process events
+/// Process events mark when a new process is created, when a call is made, and
+/// when a process is deleted.
+/// @{
+LIBHPX_EVENT(PROCESS, NEW,
+             hpx_addr_t, addr,
+             hpx_addr_t, termination_lco)
+LIBHPX_EVENT(PROCESS, CALL,
+             hpx_addr_t, addr,
+             uint64_t, id)
+LIBHPX_EVENT(PROCESS, DELETE,
+             hpx_addr_t, addr)
+/// @}
+
+/// Memory events
+/// Memory events mark when allocating or freeing any of registered memory,
+/// global memory, or cyclicly allocated memory, and also marks when any of
+/// these operations are begun.
+/// @{
+LIBHPX_EVENT(MEMORY, ALLOC_BEGIN,
+             int, addr_space,
+             size_t, bytes,
+             size_t, boundary)
+LIBHPX_EVENT(MEMORY, ALLOC_END,
+             int, addr_space,
+             uintptr_t, addr)
+LIBHPX_EVENT(MEMORY, FREE_BEGIN,
+             int, addr_space,
+             uintptr_t, addr)
+LIBHPX_EVENT(MEMORY, FREE_END,
+             int, addr_space)
+/// @}
+
+/// Scheduler timing events
+/// @{
+
+/// @}
+
+/// Trace events
+/// Trace events are used for marking events related to tracing.  At the moment 
+/// this is only used when dumping trace data to file.
+/// @{
+LIBHPX_EVENT(TRACE, FILE_IO_BEGIN)
+LIBHPX_EVENT(TRACE, FILE_IO_END)
+/// @}
+
+/// GAS events
+/// GAS events mark whenever there is a GAS access or move.
+/// @{
+LIBHPX_EVENT(GAS, ACCESS,
+             int, src,
+             int, dst,
+             hpx_addr_t, target,
+             size_t, size)
+LIBHPX_EVENT(GAS, MOVE,
+             hpx_addr_t, addr,
+             hpx_addr_t, old,
+             hpx_addr_t, new)
+LIBHPX_EVENT(GAS, MISS,
+             hpx_addr_t, addr,
+             uint32_t, owner)
+/// @}
+
+/// Collective events
+/// Collective events mark important moments in the lifetime of process
+/// collectives.  Specifically the creation or deletion of collectives, the
+/// subscription or unsubscription of participants in the collective, and 
+/// whenever the collective performs a join operation.
+/// @{
+LIBHPX_EVENT(COLLECTIVE, NEW,
+             hpx_addr_t, addr)
+LIBHPX_EVENT(COLLECTIVE, DELETE,
+             hpx_addr_t, addr)
+LIBHPX_EVENT(COLLECTIVE, SUBSCRIBE,
+             hpx_addr_t, addr,
+             hpx_action_t, cont_action,
+             hpx_addr_t, cont_addr,
+             int, user_id,
+             int, rank)
+LIBHPX_EVENT(COLLECTIVE, UNSUBSCRIBE,
+             hpx_addr_t, addr,
+             int, user_id,
+             int, rank)
+LIBHPX_EVENT(COLLECTIVE, JOIN,
+             hpx_addr_t, addr,
+             hpx_addr_t, proxy,
+             size_t, bytes,
+             int, user_id,
+             int, rank)
+/// @}

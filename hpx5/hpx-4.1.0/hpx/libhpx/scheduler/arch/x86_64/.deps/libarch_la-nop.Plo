@@ -1,0 +1,3 @@
+x86_64/libarch_la-nop.lo: x86_64/nop.S x86_64/../common/asm_macros.h
+
+x86_64/../common/asm_macros.h:

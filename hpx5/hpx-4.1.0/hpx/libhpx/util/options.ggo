@@ -1,0 +1,266 @@
+args "--include-getopt --input=options.ggo --func-name=hpx_option_parser --arg-struct-name=hpx_options_t --file-name=parser --default-optional --string-parser --conf-parser --no-help --no-version"
+
+section "HPX Runtime Options"
+
+text "All of the following options can either be set through the
+command-line using the flags given below, or through environment
+variables of the form HPX_OPTION=value, where the option corresponds
+to the flag suffix given below."
+
+option "hpx-help" - "print HPX help"
+flag off
+
+option "hpx-version" - "print HPX version"
+flag off
+
+option "hpx-heapsize" - "set HPX per-PE global heap size"
+typestr="bytes"
+long optional
+
+option "hpx-gas" - "type of Global Address Space (GAS)"
+typestr="type"
+values="default","smp","pgas","agas"
+enum optional
+
+option "hpx-boot" - "HPX bootstrap method to use"
+typestr="type"
+values="default","smp","mpi","pmi"
+enum optional
+
+option "hpx-transport" - "type of transport to use"
+typestr="type"
+values="default","mpi","photon"
+enum optional
+
+option "hpx-network" - "type of network to use"
+typestr="type"
+values="default","smp","pwc","isir"
+enum optional
+
+option "hpx-configfile" - "HPX runtime configuration file"
+typestr="file"
+string optional
+
+section "Scheduler Options"
+
+option "hpx-threads" - "number of scheduler threads"
+typestr="threads"
+int optional
+
+option "hpx-thread-affinity" - "affinitize HPX worker threads"
+typestr="policy"
+values="default","hwthread","core","numa","none"
+enum optional
+
+option "hpx-stacksize" - "set HPX stack size"
+typestr="bytes"
+long optional
+
+option "hpx-sched-policy" - "work-stealing policy for the HPX scheduler"
+typestr="policy"
+values="default","random","hier"
+enum optional
+
+option "hpx-sched-wfthreshold" - "bound on help-first tasks before work-first scheduling"
+typestr="tasks"
+long optional
+
+option "hpx-sched-stackcachelimit" - "bound on the number of stacks to cache"
+typestr="stacks"
+int optional
+
+section "Network Options"
+
+option "hpx-progress-period" - "async network progess period"
+typestr="nanoseconds"
+long optional
+
+section "GAS Options"
+
+option "hpx-gas-affinity" - "GAS affinity implementation"
+typestr="type"
+values="none","urcu","cuckoo"
+enum optional 
+
+section "Log options"
+
+option "hpx-log-at" - "filter by locality, -1 for all (default none)"
+typestr="localities"
+int optional multiple
+
+option "hpx-log-level" - "set the logging level"
+typestr="levels"
+values="default","boot","sched","gas","lco","net","trans","parcel","action","config","memory","coll","all"
+default="all"
+enum optional argoptional multiple
+
+section "HPX Debug Options"
+
+option "hpx-dbg-waitat" - "wait for debugger at, -1 for all (default none)"
+typestr="localities"
+int optional multiple
+
+option "hpx-dbg-waitonabort" - "wait inside of hpx_abort()"
+flag off
+
+option "hpx-dbg-waitonsig" - "wait on program error signals"
+typestr="signals"
+values="segv","abrt","fpe","ill","bus","iot","sys","trap","all"
+default="all"
+enum optional argoptional multiple
+
+option "hpx-dbg-mprotectstacks" - "use mprotect() to bracket stacks to look for stack overflows"
+flag off
+
+option "hpx-dbg-syncfree" - "use synchronous GAS free operations"
+flag off
+
+section "Tracing"
+
+option "hpx-trace-backend" - "type of tracing backend to use"
+typestr="type"
+values="default","file","console","stats"
+enum optional
+
+option "hpx-trace-at" - "filter by locality, -1 for all (default all)"
+typestr="localities"
+int optional multiple
+
+option "hpx-trace-classes" - "filter by class"
+typestr="class"
+values="parcel","network","sched","lco","process","memory","trace","gas","collective","all"
+enum optional multiple
+
+option "hpx-trace-dir" - "output directory (file backend)"
+typestr="dir"
+string optional
+
+option "hpx-trace-buffersize" - "size of trace buffers (file backend)"
+typestr="bytes"
+long optional
+
+option "hpx-trace-off" - "disable tracing at startup"
+flag off
+
+section "ISIR Network Options"
+
+option "hpx-isir-testwindow" - "number of ISIR requests to test in progress loop"
+typestr="requests"
+long optional
+
+option "hpx-isir-sendlimit" - "ISIR network send limit"
+typestr="requests"
+long optional
+
+option "hpx-isir-recvlimit" - "ISIR network recv limit"
+typestr="requests"
+long optional
+
+section "PWC Network Options"
+
+option "hpx-pwc-parcelbuffersize" - "set the size of p2p recv buffers for parcel sends"
+typestr="bytes"
+long optional
+
+option "hpx-pwc-parceleagerlimit" - "set the largest eager parcel size (header inclusive)"
+typestr="bytes"
+long optional
+
+section "Collectives Options"
+
+option "hpx-coll-network" - "set collective implementation to network based version (override parcel collectives)"
+flag off
+
+section "Photon Transport Options"
+
+option "hpx-photon-comporder" - "request completion ordering mode"
+typestr="type"
+values="default","none","strict"
+enum optional
+
+option "hpx-photon-backend" - "set the underlying network API to use"
+typestr="type"
+values="default","verbs","ugni","fi"
+enum optional
+
+option "hpx-photon-coll" - "set the underlying network collectives to use"
+typestr="type"
+values="default","pwc","nbc"
+enum optional
+
+option "hpx-photon-ibdev" - "[verbs] set a particular IB device (also a filter for device and port discovery, e.g. qib0:1+mlx4_0:2)"
+typestr="device"
+string optional
+
+option "hpx-photon-ethdev" - "[verbs] set a particular ETH device (for CMA mode only)"
+typestr="device"
+string optional
+
+option "hpx-photon-ibport" - "[verbs] set a particular IB port"
+typestr="integer"
+int optional
+
+option "hpx-photon-usecma" - "[verbs] enable CMA connection mode"
+flag off
+
+option "hpx-photon-ibsrq" - "[verbs] number of shared receive queues (default 0, disabled)"
+typestr="integer"
+int optional
+
+option "hpx-photon-btethresh" - "[ugni] set size in bytes for when BTE is used over FMA"
+typestr="integer"
+int optional
+
+option "hpx-photon-fiprov" - "[libfabric] provider to use (sockets, psm, etc.)"
+typestr="provider"
+string optional
+
+option "hpx-photon-fidev" - "[libfabric] network interface to use"
+typestr="interface"
+string optional
+
+option "hpx-photon-ledgersize" - "set number of ledger entries"
+typestr="integer"
+int optional
+
+option "hpx-photon-pwcbufsize" - "set size of pwc buffers"
+typestr="bytes"
+int optional
+
+option "hpx-photon-eagerbufsize" - "set size of eager buffers"
+typestr="bytes"
+int optional
+
+option "hpx-photon-smallpwcsize" - "set PWC small msg limit"
+typestr="bytes"
+int optional
+
+option "hpx-photon-maxrd" - "set max number of request descriptors"
+typestr="integer"
+int optional
+
+option "hpx-photon-defaultrd" - "set default number of allocated descriptors"
+typestr="integer"
+int optional
+
+option "hpx-photon-numcq" - "set number of completion queues to use (cyclic assignment to ranks)"
+typestr="integer"
+int optional
+
+option "hpx-photon-usercq" - "enable remote completion support (default 0, disabled)"
+typestr="integer"
+int optional
+
+section "Optimization"
+
+option "hpx-opt-smp" - "optimize for SMP execution"
+typestr="0 off"
+int optional argoptional
+
+option "hpx-parcel-compression" - "enable parcel compression"
+flag off
+
+option "hpx-coalescing-buffersize" - "set coalescing buffer size"
+typestr="Integer"
+long optional
+

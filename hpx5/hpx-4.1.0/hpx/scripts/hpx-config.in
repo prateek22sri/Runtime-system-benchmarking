@@ -1,0 +1,99 @@
+#!/bin/sh
+
+usage() {
+        cat <<EOF
+Usage:
+  hpx-config <option>
+Options:
+  --help | -h  : Print usage.
+  --version    : Print hpx version.
+  --config     : Print configure options used to build hpx.
+  --prefix     : Print installation directory prefix.
+  --bindir     : Print binary installation directory.
+  --includedir : Print include installation directory.
+  --libdir     : Print library installation directory.
+  --src-root   : Print the source root HPX was built from.
+  --obj-root   : Print the object root used to build HPX.
+  --host-cpu   : Print the host cpu used to configure HPX.
+  --host-os    : Print the host os used to configure HPX. 
+  --cc         : Print compiler used to build hpx.
+  --cflags     : Print compiler flags used to build hpx.
+  --cxx        : Print c++ compiler used to build hpx.
+  --cxxflags   : Print cxx flags used to build HPX.
+  --cppflags   : Print preprocessor flags used to build hpx.
+  --ldflags    : Print the ld flags used to build HPX.
+  --ccasflags  : Print the ccas flags used to build HPX.
+  --libs       : Print libraries hpx was linked against.
+EOF
+}
+
+prefix="@prefix@"
+exec_prefix="@exec_prefix@"
+pkg_prefix="@prefix@/lib/pkgconfig"
+
+LIBS=$(PKG_CONFIG_PATH="$pkg_prefix:$PKG_CONFIG_PATH" pkg-config --libs --static hpx)
+
+case "$1" in
+--help | -h)
+        usage
+        exit 0
+        ;;
+--version)
+        echo "4.1.0"
+        echo "@HPX_COPYRIGHT@"
+        ;;
+--config)
+        echo "@CONFIG@"
+        ;;
+--prefix)
+        echo "@PREFIX@"
+        ;;
+--bindir)
+        echo "@BINDIR@"
+        ;;
+--includedir)
+        echo "@INCLUDEDIR@"
+        ;;
+--libdir)
+        echo "@LIBDIR@"
+        ;;
+--src-root)
+        echo "@abs_top_srcdir@"
+        ;;
+--obj-root)
+        echo "@abs_top_builddir@"
+        ;;
+--host-cpu)
+        echo "@host_cpu@"
+        ;;
+--host-os)
+        echo "@host_os@"
+        ;;
+--cc)
+        echo "@CC@"
+        ;;
+--cflags)
+        echo "@CFLAGS@"
+        ;;
+--cxx)
+        echo "@CXX@"
+        ;;
+--cxxflags)
+        echo "@CXXFLAGS@"
+        ;;
+--cppflags)
+        echo "@CPPFLAGS@"
+        ;;
+--ldflags)
+        echo "@LDFLAGS@"
+        ;;
+--ccasflags)
+        echo "@CCASFLAGS@"
+        ;;
+--libs)
+        echo "$LIBS"
+        ;;
+*)
+        usage
+        exit 1
+esac

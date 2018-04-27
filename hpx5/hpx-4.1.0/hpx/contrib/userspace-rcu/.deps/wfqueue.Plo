@@ -1,0 +1,106 @@
+wfqueue.lo: wfqueue.c urcu/wfqueue.h /usr/include/pthread.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h /usr/include/endian.h \
+ /usr/include/bits/endian.h /usr/include/bits/byteswap.h \
+ /usr/include/sched.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stddef.h \
+ /usr/include/time.h /usr/include/bits/sched.h /usr/include/bits/time.h \
+ /usr/include/xlocale.h /usr/include/signal.h /usr/include/bits/sigset.h \
+ /usr/include/bits/pthreadtypes.h /usr/include/bits/setjmp.h \
+ /usr/include/assert.h urcu/compiler.h urcu/static/wfqueue.h \
+ /usr/include/poll.h /usr/include/sys/poll.h /usr/include/bits/poll.h \
+ urcu/uatomic.h urcu/system.h urcu/arch.h urcu/config.h \
+ urcu/syscall-compat.h /usr/include/syscall.h /usr/include/sys/syscall.h \
+ /usr/include/asm/unistd.h /usr/include/asm/unistd_64.h \
+ /usr/include/bits/syscall.h \
+ /opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/wchar.h urcu/arch/generic.h \
+ urcu/uatomic/generic.h
+
+urcu/wfqueue.h:
+
+/usr/include/pthread.h:
+
+/usr/include/features.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/endian.h:
+
+/usr/include/bits/endian.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/include/sched.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stddef.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/xlocale.h:
+
+/usr/include/signal.h:
+
+/usr/include/bits/sigset.h:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/include/assert.h:
+
+urcu/compiler.h:
+
+urcu/static/wfqueue.h:
+
+/usr/include/poll.h:
+
+/usr/include/sys/poll.h:
+
+/usr/include/bits/poll.h:
+
+urcu/uatomic.h:
+
+urcu/system.h:
+
+urcu/arch.h:
+
+urcu/config.h:
+
+urcu/syscall-compat.h:
+
+/usr/include/syscall.h:
+
+/usr/include/sys/syscall.h:
+
+/usr/include/asm/unistd.h:
+
+/usr/include/asm/unistd_64.h:
+
+/usr/include/bits/syscall.h:
+
+/opt/gcc/5.3.0/snos/lib/gcc/x86_64-suse-linux/5.3.0/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+urcu/arch/generic.h:
+
+urcu/uatomic/generic.h:

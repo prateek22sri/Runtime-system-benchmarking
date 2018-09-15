@@ -1,1 +1,5 @@
 # runtime_system_analysis
+
+Graph problems are one of the most important problems used for benchmarking purposes.  Among other graph problems, single source shortest path problem(SSSP) is relatively more difficult compared to other graph problems like breadth first search. There are many frameworks or runtime systems that are dedicated to solve such problems. These systems use different architectures, different methods for parallelization, different means for synchronicity and so on. All these parameters responsible for the performance of these systems individually make these comparisons heterogenous. Here the author aims to achieve a comparison for the performance of these runtime systems which will provide a baseline and help understand the innate differences among them. The comparison is done by assuming these runtime systems are individual black boxes with a fixed input and output. The metrics calculated in the process quantize the differences or benchmark each runtime systems in reference to SSSP.
+
+To read more check the file "Comparative Analysis of different AMT systems using SSSP.pdf"
